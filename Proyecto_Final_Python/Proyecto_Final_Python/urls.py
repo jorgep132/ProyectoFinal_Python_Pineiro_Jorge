@@ -23,7 +23,9 @@ from Proyecto_Final_Python_App import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.index, name='index'),
-    path('details/', views.details, name='details'),
+    path('detalles_juegos/', views.detalles_juegos, name='detalles_juegos'),
+    path('categoria_juegos/', views.categoria_juegos, name='categoria_juegos'),
+    path('prince_of_persia_the_lost_crown', views.prince_of_persia_the_lost_crown, name='prince_of_persia_the_lost_crown'),
 ]
 
 

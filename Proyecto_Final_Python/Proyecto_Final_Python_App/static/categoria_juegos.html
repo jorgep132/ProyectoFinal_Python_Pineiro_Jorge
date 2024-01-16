@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zxx">
-
+{% load static %}
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Anime Template">
@@ -15,14 +15,14 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/plyr.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/plyr.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
 </head>
 
 <body>
@@ -37,8 +37,8 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="./index.html">
-                            <img src="img/logo.png" alt="">
+                        <a href="{% url 'index' %}">
+                            <img src="{% static 'img/logo.png' %}" alt="">
                         </a>
                     </div>
                 </div>
@@ -46,12 +46,10 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Homepage</a></li>
-                                <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                                <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
+                                <li><a href="{% url 'categoria_juegos' %}">Contenido <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="./categories.html">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
-                                        <li><a href="./anime-watching.html">Anime Watching</a></li>
+                                        <li><a href="{% url 'categoria_juegos' %}">Categoría de juegos</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                         <li><a href="./signup.html">Sign Up</a></li>
                                         <li><a href="./login.html">Login</a></li>
@@ -81,9 +79,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-                        <a href="./categories.html">Categories</a>
-                        <span>Romance</span>
+                        <a href="{% url 'index' %}"><i class="fa fa-home"></i> Inicio</a>
+                        <a href="{% url 'categoria_juegos' %}">Categorias</a>
                     </div>
                 </div>
             </div>
@@ -101,7 +98,7 @@
                             <div class="row">
                                 <div class="col-lg-8 col-md-8 col-sm-6">
                                     <div class="section-title">
-                                        <h4>Romance</h4>
+                                        <h4>Metroidvania</h4>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6">
@@ -119,7 +116,7 @@
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/popular/popular-1.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/popular/popular-1.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -129,13 +126,13 @@
                                             <li>Active</li>
                                             <li>Movie</li>
                                         </ul>
-                                        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
+                                        <h5><a href="{% url 'prince_of_persia_the_lost_crown' %}">Prince of Persia: The Lost Crown</a></h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/popular/popular-2.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/popular/popular-2.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -151,7 +148,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/popular/popular-3.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/popular/popular-3.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -167,7 +164,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/popular/popular-4.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/popular/popular-4.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -183,7 +180,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/popular/popular-5.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/popular/popular-5.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -199,7 +196,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/popular/popular-6.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/popular/popular-6.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -215,7 +212,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-1.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/recent/recent-1.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -231,7 +228,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-2.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/recent/recent-2.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -247,7 +244,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-3.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/recent/recent-3.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -263,7 +260,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-4.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/recent/recent-4.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -279,7 +276,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-5.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/recent/recent-5.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -295,7 +292,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/recent/recent-6.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/recent/recent-6.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -311,7 +308,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/trending/trend-1.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/trending/trend-1.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -327,7 +324,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/trending/trend-2.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/trending/trend-2.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -343,7 +340,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/trending/trend-3.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/trending/trend-3.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -359,7 +356,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/trending/trend-4.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/trending/trend-4.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -375,7 +372,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/trending/trend-5.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/trending/trend-5.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -391,7 +388,7 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="img/trending/trend-6.jpg">
+                                    <div class="product__item__pic set-bg" data-setbg="{% static 'img/trending/trend-6.jpg' %}">
                                         <div class="ep">18 / 18</div>
                                         <div class="comment"><i class="fa fa-comments"></i> 11</div>
                                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
@@ -430,31 +427,31 @@
                             </ul>
                             <div class="filter__gallery">
                                 <div class="product__sidebar__view__item set-bg mix day years"
-                                data-setbg="img/sidebar/tv-1.jpg">
+                                data-setbg="{% static 'img/sidebar/tv-1.jpg' %}">
                                 <div class="ep">18 / ?</div>
                                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                                 <h5><a href="#">Boruto: Naruto next generations</a></h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix month week"
-                            data-setbg="img/sidebar/tv-2.jpg">
+                            data-setbg="{% static 'img/sidebar/tv-2.jpg' %}">
                             <div class="ep">18 / ?</div>
                             <div class="view"><i class="fa fa-eye"></i> 9141</div>
                             <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                         </div>
                         <div class="product__sidebar__view__item set-bg mix week years"
-                        data-setbg="img/sidebar/tv-3.jpg">
+                        data-setbg="{% static 'img/sidebar/tv-3.jpg' %}">
                         <div class="ep">18 / ?</div>
                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
                         <h5><a href="#">Sword art online alicization war of underworld</a></h5>
                     </div>
                     <div class="product__sidebar__view__item set-bg mix years month"
-                    data-setbg="img/sidebar/tv-4.jpg">
+                    data-setbg="{% static 'img/sidebar/tv-4.jpg' %}">
                     <div class="ep">18 / ?</div>
                     <div class="view"><i class="fa fa-eye"></i> 9141</div>
                     <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
                 </div>
                 <div class="product__sidebar__view__item set-bg mix day"
-                data-setbg="img/sidebar/tv-5.jpg">
+                data-setbg="{% static 'img/sidebar/tv-5.jpg' %}">
                 <div class="ep">18 / ?</div>
                 <div class="view"><i class="fa fa-eye"></i> 9141</div>
                 <h5><a href="#">Fate stay night unlimited blade works</a></h5>
@@ -467,7 +464,7 @@
         </div>
         <div class="product__sidebar__comment__item">
             <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-1.jpg" alt="">
+                <img src="{% static 'img/sidebar/comment-1.jpg' %}" alt="">
             </div>
             <div class="product__sidebar__comment__item__text">
                 <ul>
@@ -480,7 +477,7 @@
         </div>
         <div class="product__sidebar__comment__item">
             <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-2.jpg" alt="">
+                <img src="{% static 'img/sidebar/comment-2.jpg' %}" alt="">
             </div>
             <div class="product__sidebar__comment__item__text">
                 <ul>
@@ -493,7 +490,7 @@
         </div>
         <div class="product__sidebar__comment__item">
             <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-3.jpg" alt="">
+                <img src="{% static 'img/sidebar/comment-3.jpg' %}" alt="">
             </div>
             <div class="product__sidebar__comment__item__text">
                 <ul>
@@ -506,7 +503,7 @@
         </div>
         <div class="product__sidebar__comment__item">
             <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-4.jpg" alt="">
+                <img src="{% static 'img/sidebar/comment-4.jpg' %}" alt="">
             </div>
             <div class="product__sidebar__comment__item__text">
                 <ul>
@@ -534,14 +531,14 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="footer__logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="./index.html">Homepage</a></li>
-                        <li><a href="./categories.html">Categories</a></li>
+                        <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
+                        <li><a href="{% url 'categoria_juegos' %}">Categorias</a></li>
                         <li><a href="./blog.html">Our Blog</a></li>
                         <li><a href="#">Contacts</a></li>
                     </ul>
@@ -570,14 +567,14 @@
 <!-- Search model end -->
 
 <!-- Js Plugins -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/player.js"></script>
-<script src="js/jquery.nice-select.min.js"></script>
-<script src="js/mixitup.min.js"></script>
-<script src="js/jquery.slicknav.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/main.js"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/player.js' %}"></script>
+<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+<script src="{% static 'js/mixitup.min.js' %}"></script>
+<script src="{% static 'js/jquery.slicknav.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
 
 </body>
 
