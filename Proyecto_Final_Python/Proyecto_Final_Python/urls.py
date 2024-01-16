@@ -24,8 +24,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', views.index, name='index'),
     path('detalles_juegos/', views.detalles_juegos, name='detalles_juegos'),
-    path('categoria_juegos/', views.categoria_juegos, name='categoria_juegos'),
-    path('prince_of_persia_the_lost_crown', views.prince_of_persia_the_lost_crown, name='prince_of_persia_the_lost_crown'),
+    path('lista_juegos/', views.lista_juegos, name='lista_juegos'),
+    path('lista_juegos/prince_of_persia_the_lost_crown', views.prince_of_persia_the_lost_crown, name='prince_of_persia_the_lost_crown'),
 ]
 
 
