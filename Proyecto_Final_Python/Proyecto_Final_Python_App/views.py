@@ -68,3 +68,9 @@ class VistaJuegosListaAlReves(View):
         }
 
         return render(request, self.nombre_template, context)
+    
+    
+def detalles_juego(request, juego_id):
+    juego = Juegos.objects.get(id=juego_id)
+    return render(request, 'detalles_juegos.html', {'juego': juego})
+
