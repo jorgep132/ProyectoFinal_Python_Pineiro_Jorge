@@ -22,15 +22,36 @@ def persona3_reload(request):
 def ffvii_rebirth(request):
     return render(request, 'ffvii_rebirth.html')
 
-
-
-
 class VistaJuegosLista(View):
-    nombre_template = 'lista_juegos.html'
+    nombre_template = 'lista_juegos_A-Z.html'
     juegos_por_pag = 6
 
     def get(self, request, *args, **kwargs):
-        juegos_total = Juegos.objects.all().order_by('title')  # Ajusta 'nombre' al campo correcto
+        juegos_total = Juegos.objects.all().order_by('title')
+
+        paginator = Paginator(juegos_total, self.juegos_por_pag)
+        page = request.GET.get('page')
+
+        try:
+            juegos = paginator.page(page)
+        except PageNotAnInteger:
+            juegos = paginator.page(1)
+        except EmptyPage:
+            juegos = paginator.page(paginator.num_pages)
+
+        context = {
+            'juegos_lista': juegos,
+        }
+
+        return render(request, self.nombre_template, context)
+    
+
+class VistaJuegosListaAlReves(View):
+    nombre_template = 'lista_juegos_Z-A.html'
+    juegos_por_pag = 6
+
+    def get(self, request, *args, **kwargs):
+        juegos_total = Juegos.objects.all().order_by('title').reverse()  
 
         paginator = Paginator(juegos_total, self.juegos_por_pag)
         page = request.GET.get('page')
