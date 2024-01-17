@@ -16,16 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from Proyecto_Final_Python_App import views
+from Proyecto_Final_Python_App.views import index, VistaJuegosLista, prince_of_persia_the_lost_crown, persona3_reload, ffvii_rebirth
 
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', views.index, name='index'),
-    path('detalles_juegos/', views.detalles_juegos, name='detalles_juegos'),
-    path('lista_juegos/', views.lista_juegos, name='lista_juegos'),
-    path('lista_juegos/prince_of_persia_the_lost_crown', views.prince_of_persia_the_lost_crown, name='prince_of_persia_the_lost_crown'),
+    path('', index, name='index'),
+    # path('lista_juegos/', views.lista_juegos, name='lista_juegos'),
+    path('lista_juegos/', VistaJuegosLista.as_view(), name='lista_juegos'),
+    path('lista_juegos/prince_of_persia_the_lost_crown', prince_of_persia_the_lost_crown, name='prince_of_persia_the_lost_crown'),
+    path('lista_juegos/persona3_reload', persona3_reload, name='persona3_reload'),
+    path('lista_juegos/ffvii_rebirth', ffvii_rebirth, name='ffvii_rebirth'),
 ]
-
+ 
 
