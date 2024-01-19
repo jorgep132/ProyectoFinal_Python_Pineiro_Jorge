@@ -59,10 +59,6 @@ h2 {
 	font-size: 36px;
 }
 
-h3 {
-	font-size: 30px;
-}
-
 h4 {
 	font-size: 24px;
 }
@@ -134,13 +130,13 @@ ol {
 	top: -6px;
 	height: 32px;
 	width: 4px;
-	background: #e53637;
+	background: #7e035d;
 	content: "";
 }
 
 .set-bg {
 	background-repeat: no-repeat;
-	background-size: cover;
+	background-size: 100% 100%;
 	background-position: top center;
 }
 
@@ -350,7 +346,7 @@ ol {
 }
 
 .header__menu ul li.active a {
-	background: #e53637;
+	background: #7e035d;
 	color: #ffffff;
 }
 
@@ -509,7 +505,7 @@ ol {
 .hero__text a span {
 	font-size: 13px;
 	color: #ffffff;
-	background: #e53637;
+	background: #7e035d;
 	display: inline-block;
 	font-weight: 700;
 	letter-spacing: 2px;
@@ -522,7 +518,7 @@ ol {
 .hero__text a i {
 	font-size: 20px;
 	display: inline-block;
-	background: #e53637;
+	background: #7e035d;
 	padding: 11px 5px 16px 8px;
 	color: #ffffff;
 	border-radius: 0 4px 4px 0;
@@ -734,7 +730,7 @@ ol {
 	top: -6px;
 	height: 32px;
 	width: 4px;
-	background: #e53637;
+	background: #7e035d;
 	content: "";
 }
 
@@ -1064,7 +1060,7 @@ ol {
 .anime__details__btn .follow-btn {
 	font-size: 13px;
 	color: #ffffff;
-	background: #e53637;
+	background: #7e035d;
 	display: inline-block;
 	font-weight: 700;
 	letter-spacing: 2px;
@@ -1077,7 +1073,7 @@ ol {
 .anime__details__btn .watch-btn span {
 	font-size: 13px;
 	color: #ffffff;
-	background: #e53637;
+	background: #7e035d;
 	display: inline-block;
 	font-weight: 700;
 	letter-spacing: 2px;
@@ -1090,7 +1086,7 @@ ol {
 .anime__details__btn .watch-btn i {
 	font-size: 20px;
 	display: inline-block;
-	background: #e53637;
+	background: #7e035d;
 	padding: 11px 5px 16px 8px;
 	color: #ffffff;
 	border-radius: 0 4px 4px 0;
@@ -1172,7 +1168,7 @@ ol {
 	font-weight: 700;
 	letter-spacing: 2px;
 	text-transform: uppercase;
-	background: #e53637;
+	background: #7e035d;
 	border: none;
 	padding: 10px 15px;
 	border-radius: 2px;
@@ -1306,7 +1302,7 @@ ol {
 
 .breadcrumb__links a i {
 	margin-right: 5px;
-	color: #e53637;
+	color: #7e035d;
 }
 
 .breadcrumb__links a:after {
@@ -1403,7 +1399,7 @@ ol {
 }
 
 .blog__item__text p span {
-	color: #e53637;
+	color: #7e035d;
 	margin-right: 5px;
 }
 
@@ -1723,10 +1719,10 @@ ol {
 
 .login__form {
 	position: relative;
-	padding-left: 145px;
+	padding-left: 400px;
 }
 
-.login__form:after {
+/* .login__form:after {
 	position: absolute;
 	right: -14px;
 	top: -40px;
@@ -1734,7 +1730,7 @@ ol {
 	width: 1px;
 	background: rgba(255, 255, 255, 0.2);
 	content: "";
-}
+} */
 
 .login__form h3 {
 	color: #ffffff;
@@ -1763,7 +1759,7 @@ ol {
 	height: 50px;
 	width: 100%;
 	font-size: 15px;
-	color: #b7b7b7;
+	color: #000000;
 	background: #ffffff;
 	border: none;
 	padding-left: 76px;
@@ -1891,7 +1887,7 @@ ol {
 -----------------------*/
 
 .signup {
-	padding-top: 130px;
+	padding-top: 50px;
 	padding-bottom: 150px;
 }
 
@@ -1951,7 +1947,7 @@ ol {
 	color: #ffffff;
 	height: 50px;
 	width: 50px;
-	background: #e53637;
+	background: #7e035d;
 	line-height: 50px;
 	text-align: center;
 	border-radius: 50%;

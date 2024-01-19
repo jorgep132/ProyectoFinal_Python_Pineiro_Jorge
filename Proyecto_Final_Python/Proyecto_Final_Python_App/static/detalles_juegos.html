@@ -50,9 +50,9 @@
                                 <li><a>Contenido <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="{% url 'lista_juegos_A-Z' %}">Lista de Juegos</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
                                         <li><a href="./login.html">Login</a></li>
+                                        <li><a href="{% url 'registro' %}">Registro</a></li>
+                                        <li><a href="./blog-details.html">Blog Details</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Our Blog</a></li>
@@ -112,22 +112,22 @@
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
                                             <li><span>Género:</span>{{ juego.genero1 }}</li>
-                                            <li><span>Desarrolladora:</span> Corne</li>
-                                            <li><span>Lanzamiento:</span> Oct 02, 2019 to ?</li>
+                                            <li><span>Desarrolladora:</span>{{juego.desarrolladora}}</li>
+                                            <li><span>Lanzamiento:</span>{{juego.lanzamiento}}</li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Metacritic:</span> 7.31 / 1,515</li>
-                                            <li><span>Duración:</span> 24 min/ep</li>
-                                            <li><span>Plataforma:</span> 131,541</li>
+                                            <li><span>Metacritic:</span>{{juego.metacritic}}</li>
+                                            <li><span>Duración:</span>{{juego.duracion}}</li>
+                                            <li><span>Plataforma:</span>{{juego.plataforma}}</li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                <a href="#" class="follow-btn"><i class="fa fa-heart-o"></i> Follow</a>
-                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
+                                <a href="{{juego.tienda}}" target="_blank" class="follow-btn">Lo quiero!</a>
+                                <a href="{{juego.trailer}}" target="_blank" class="watch-btn"><span>Ver trailer</span> <i
                                     class="fa fa-angle-right"></i></a>
                                 </div>
                             </div>

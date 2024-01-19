@@ -1,8 +1,10 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
-from Proyecto_Final_Python_App.models import Juegos
-from django.shortcuts import render
+from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
+
 
 # Create your views here.
 
@@ -13,14 +15,10 @@ def index(request):
 def lista_juegos(request):
     return render(request, 'lista_juegos.html')
 
-def prince_of_persia_the_lost_crown(request):
-    return render(request, 'prince_of_persia_the_lost_crown.html')
+def usuarios_lista(request):
+    usuarios = UsuarioEstandar.objects.all()
+    return render(request, 'usuarios.html', {'usuarios': usuarios})
 
-def persona3_reload(request):
-    return render(request, 'persona3_reload.html')
-
-def ffvii_rebirth(request):
-    return render(request, 'ffvii_rebirth.html')
 
 class VistaJuegosLista(View):
     nombre_template = 'lista_juegos_A-Z.html'
@@ -73,4 +71,59 @@ class VistaJuegosListaAlReves(View):
 def detalles_juego(request, juego_id):
     juego = Juegos.objects.get(id=juego_id)
     return render(request, 'detalles_juegos.html', {'juego': juego})
+
+def registro_usuario(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        username = request.POST['username']
+        password = request.POST['password']
+        is_admin = request.POST.get('is_admin', False)
+
+        errors = {}
+
+        if not email or not username or not password:
+            errors['error_mail'] = 'Todos los campos son obligatorios.'
+
+        if UsuarioEstandar.objects.filter(email=email).exists():
+            errors['error_mail'] = 'Este correo electrónico ya está en uso.'
+
+        if UsuarioEstandar.objects.filter(username=username).exists():
+            errors['error_username'] = 'Este nombre de usuario ya está en uso.'
+        elif len(username) < 6 or len(username) > 12:
+            errors['error_username'] = 'El nombre de usuario debe tener entre 6 y 12 caracteres.'
+
+        if len(password) < 8 or len(password) > 16:
+            errors['error_password'] = 'La contraseña debe tener entre 8 y 16 caracteres.'
+
+        if errors:
+            return render(request, 'registro.html', {'errors': errors})
+
+        if is_admin:
+            usuario_estandar = UsuarioEstandar.objects.create_superuser(username=username, email=email, password=password)
+        else:
+            usuario_estandar = UsuarioEstandar.objects.create_user(username=username, email=email, password=password)
+
+        return redirect('index')
+
+    return render(request, 'registro.html')
+
+
+
+def login_usuario(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+    
+        user = authenticate(request, username=username, password=password)
+    
+        if user is not None and user.is_active:
+            # Iniciar sesión si el usuario está autenticado y activo
+            login(request, user)
+            return redirect('index')
+        else:
+            # Manejar el caso en que la autenticación falla o el usuario no está activo
+            return render(request, 'login.html', {'error': 'Usuario o contraseña incorrectos.'})
+        
+    return render(request, 'login.html')
+
 

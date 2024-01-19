@@ -1,22 +1,7 @@
-"""
-URL configuration for Proyecto_Final_Python project.
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
 from django.contrib import admin
 from django.urls import path
-from Proyecto_Final_Python_App.views import index, VistaJuegosLista, prince_of_persia_the_lost_crown, persona3_reload, ffvii_rebirth, VistaJuegosListaAlReves, detalles_juego
+from django.contrib.auth.views import LogoutView
+from Proyecto_Final_Python_App.views import index, detalles_juego, registro_usuario, login_usuario, usuarios_lista, VistaJuegosLista, VistaJuegosListaAlReves
 
 
 
@@ -26,6 +11,10 @@ urlpatterns = [
     path('lista_juegos_A-Z/', VistaJuegosLista.as_view(), name='lista_juegos_A-Z'),
     path('lista_juegos_Z-A/', VistaJuegosListaAlReves.as_view(), name='lista_juegos_Z-A'),
     path('detalles_juego/<str:juego_id>/', detalles_juego, name='detalles_juego'),
+    path('iniciar_sesion/', login_usuario, name='iniciar_sesion'),
+    path('registro/', registro_usuario, name='registro'),
+    path('cerrar_sesion/', LogoutView.as_view(next_page=''), name='cerrar_sesion'),
+    path('usuarios/', usuarios_lista, name='usuarios'),
 
 ]
  

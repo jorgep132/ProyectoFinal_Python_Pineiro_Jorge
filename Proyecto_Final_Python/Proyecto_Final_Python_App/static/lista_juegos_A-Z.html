@@ -49,10 +49,9 @@
                                 <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
                                 <li><a>Contenido <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
-                                        <li><a href="{% url 'lista_juegos_A-Z' %}">Lista de Juegos</a></li>
+                                        <li><a href="./login.html">Iniciar sesión</a></li>
+                                        <li><a href="{% url 'registro' %}">Registro</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
-                                        <li><a href="./login.html">Login</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Our Blog</a></li>
@@ -153,14 +152,8 @@
                     <div class="product__sidebar">
                         <div class="product__sidebar__view">
                             <div class="section-title">
-                                <h5>Top Views</h5>
+                                <h5>TOP METACRITIC</h5>
                             </div>
-                            <ul class="filter__controls">
-                                <li class="active" data-filter="*">Day</li>
-                                <li data-filter=".week">Week</li>
-                                <li data-filter=".month">Month</li>
-                                <li data-filter=".years">Years</li>
-                            </ul>
                             <div class="filter__gallery">
                                 <div class="product__sidebar__view__item set-bg mix day years"
                                 data-setbg="{% static 'img/sidebar/tv-1.jpg' %}">
