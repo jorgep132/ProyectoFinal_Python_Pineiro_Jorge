@@ -11,7 +11,18 @@ from django.views.generic import ListView
 
 
 def index(request):
-    return render(request, 'index.html')
+    query = request.GET.get('q')
+    juegos = Juegos.objects.all()
+    
+    if query:
+        juegos = juegos.filter(title__icontains=query)
+        
+        if juegos.count() == 1:
+            juego = juegos.first()
+            return redirect('detalles_juego', juego_id=juego.id)
+
+    context = {'juegos' : juegos, 'query' : query}
+    return render(request, 'index.html', context)
 
 def lista_juegos(request):
     return render(request, 'lista_juegos.html')
