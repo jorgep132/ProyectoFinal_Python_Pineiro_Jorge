@@ -1,7 +1,8 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
-from django.shortcuts import render, redirect
+from Proyecto_Final_Python_App.forms import UsuarioEstandarForm
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
 
@@ -15,9 +16,15 @@ def index(request):
 def lista_juegos(request):
     return render(request, 'lista_juegos.html')
 
+
+### Manejo de usuarios ###
+
 def usuarios_lista(request):
     usuarios = UsuarioEstandar.objects.all()
     return render(request, 'usuarios.html', {'usuarios': usuarios})
+
+
+
 
 
 class VistaJuegosLista(View):
@@ -108,7 +115,16 @@ def registro_usuario(request):
     return render(request, 'registro.html')
 
 
+## Decorador para no poder acceder a la vista de iniciar_sesion si el usuario ya se encuentra logueado
+def redirect_authenticated_user(view_func):
+    def wrapper(request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('index')  # Cambia 'index' por el nombre de tu vista de inicio
+        return view_func(request, *args, **kwargs)
+    return wrapper
 
+
+@redirect_authenticated_user
 def login_usuario(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -117,13 +133,12 @@ def login_usuario(request):
         user = authenticate(request, username=username, password=password)
     
         if user is not None and user.is_active:
-            # Iniciar sesión si el usuario está autenticado y activo
             login(request, user)
             return redirect('index')
         else:
-            # Manejar el caso en que la autenticación falla o el usuario no está activo
             return render(request, 'login.html', {'error': 'Usuario o contraseña incorrectos.'})
         
     return render(request, 'login.html')
+
 
 

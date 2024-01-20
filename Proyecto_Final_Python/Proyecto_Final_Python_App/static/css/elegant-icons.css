@@ -196,6 +196,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon_search:before {
 	content: "\55";
+	color: #7e035d;
 }
 .icon_box-empty:before {
 	content: "\56";
@@ -646,6 +647,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon_lock:before {
 	content: "\e06c";
+	color: #7e035d;
 }
 .icon_lock-open:before {
 	content: "\e06d";
@@ -736,6 +738,7 @@ you can use the generic selector below, but it's slower:
 }
 .icon_profile:before {
 	content: "\e08a";
+	color: #7e035d;
 }
 .icon_group:before {
 	content: "\e08b";

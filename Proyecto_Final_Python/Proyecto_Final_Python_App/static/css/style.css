@@ -179,7 +179,7 @@ ol {
 .site-btn {
 	font-size: 13px;
 	color: #ffffff;
-	background: #e53637;
+	background: #7e035d;
 	font-weight: 700;
 	border: none;
 	border-radius: 2px;
@@ -1819,7 +1819,7 @@ ol {
 }
 
 .login__register .primary-btn {
-	background: #e53637;
+	background: #7e035d;
 	padding: 12px 42px;
 }
 
@@ -1902,7 +1902,7 @@ ol {
 }
 
 .signup .login__form h5 a {
-	color: #e53637;
+	color: #7e035d;
 	font-weight: 700;
 }
 
