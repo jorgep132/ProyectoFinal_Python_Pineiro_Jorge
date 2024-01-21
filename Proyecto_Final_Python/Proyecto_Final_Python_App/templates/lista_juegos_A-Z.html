@@ -145,8 +145,8 @@
                             <div class="testing_paginacion">
                                 <span class="step-links">
                                     {% if juegos_lista.has_previous %}
-                                        <a href="?page=1">&laquo; first</a>
-                                        <a href="?page={{ juegos_lista.previous_page_number }}">previous</a>
+                                        <a href="?page=1">&laquo;Primero</a>
+                                        <a href="?page={{ juegos_lista.previous_page_number }}">Anterior</a>
                                     {% endif %}
         
                                     <span class="current" id="test">
@@ -154,8 +154,8 @@
                                     </span>
         
                                     {% if juegos_lista.has_next %}
-                                        <a href="?page={{ juegos_lista.next_page_number }}">next</a>
-                                        <a href="?page={{ juegos_lista.paginator.num_pages }}">last &raquo;</a>
+                                        <a href="?page={{ juegos_lista.next_page_number }}">Siguiente</a>
+                                        <a href="?page={{ juegos_lista.paginator.num_pages }}">Último&raquo;</a>
                                     {% endif %}
                                 </span>
                             </div>
