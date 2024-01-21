@@ -1,8 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
+from django.contrib import messages
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
-from Proyecto_Final_Python_App.forms import UsuarioEstandarForm
-from django.shortcuts import render, redirect, get_object_or_404
+from .forms import JuegosForm
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
 
@@ -28,6 +29,28 @@ def index(request):
 
     context = {'juegos': juegos, 'query': query}
     return render(request, 'index.html', context)
+
+##### Crear juegos desde la pag #########
+
+
+def agregar_juegos(request):
+    if request.method == 'POST':
+        form = JuegosForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Guardar los datos si el formulario es válido
+            form.save()
+            messages.success(request, 'Juego agregado correctamente.')
+            # Limpiar el formulario para campos vacíos
+            form = JuegosForm()
+    else:
+        # Si no es una solicitud POST, crear un nuevo formulario en blanco
+        form = JuegosForm()
+
+    return render(request, 'agregar_juegos.html', {'form': form})
+
+
+
+##########################################
 
 
 ### Manejo de usuarios ###
