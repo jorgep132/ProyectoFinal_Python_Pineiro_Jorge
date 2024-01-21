@@ -67,19 +67,25 @@ class VistaJuegosLista(View):
     def get(self, request, *args, **kwargs):
         query = request.GET.get('q')
         
-        # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
-        juegos = Juegos.objects.all().order_by('-metacritic')
+        # Obtén todos los juegos ordenados alfabéticamente por título
+        order_option = request.GET.get('order_option', 'asc')
+        if order_option == 'asc':
+            juegos = Juegos.objects.all().order_by('title')
+        elif order_option == 'desc':
+            juegos = Juegos.objects.all().order_by('-title')
+        else:
+            juegos = Juegos.objects.all().order_by('title')
 
         if query:
             # Filtra los juegos por título
-            juegos = juegos.filter(title__icontains=query).order_by('-metacritic')
+            juegos = juegos.filter(title__icontains=query)
 
             if juegos.count() == 1:
                 juego = juegos.first()
                 return redirect('detalles_juego', juego_id=juego.id)
 
-        # Limita la consulta a los 4 primeros juegos con mayor Metacritic
-        mejores_juegos = juegos[:4]
+        # Limita la consulta a los 4 primeros juegos alfabéticamente
+        mejores_juegos = Juegos.objects.all().order_by('-metacritic')[:4]
 
         paginator = Paginator(juegos, self.juegos_por_pag)
         page = request.GET.get('page')
@@ -110,7 +116,7 @@ class VistaJuegosListaAlReves(View):
         juegos_total = Juegos.objects.all().order_by('title').reverse()  
         
         # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
-        juegos = Juegos.objects.all().order_by('-metacritic')
+        juegos = Juegos.objects.all().order_by('-title')
 
         if query:
             # Filtra los juegos por título
@@ -121,7 +127,7 @@ class VistaJuegosListaAlReves(View):
                 return redirect('detalles_juego', juego_id=juego.id)
 
         # Limita la consulta a los 4 primeros juegos con mayor Metacritic
-        mejores_juegos = juegos[:4]
+        mejores_juegos = Juegos.objects.all().order_by('-metacritic')[:4]
 
         paginator = Paginator(juegos, self.juegos_por_pag)
         page = request.GET.get('page')
