@@ -7,25 +7,27 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
 
 
-# Create your views here.
-
-
 def index(request):
     query = request.GET.get('q')
-    juegos = Juegos.objects.all()
-    
+
+    # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
+    juegos = Juegos.objects.all().order_by('-metacritic')
+
     if query:
-        juegos = juegos.filter(title__icontains=query)
-        
+        # Filtra los juegos por título antes de limitar a los 4 primeros
+        juegos = Juegos.objects.filter(title__icontains=query).order_by('-metacritic')
+
         if juegos.count() == 1:
             juego = juegos.first()
             return redirect('detalles_juego', juego_id=juego.id)
+        else :
+            return redirect('index')
 
-    context = {'juegos' : juegos, 'query' : query}
+    # Limita la consulta a los 4 primeros juegos con mayor Metacritic
+    juegos = juegos[:4]
+
+    context = {'juegos': juegos, 'query': query}
     return render(request, 'index.html', context)
-
-def lista_juegos(request):
-    return render(request, 'lista_juegos.html')
 
 
 ### Manejo de usuarios ###
@@ -35,52 +37,83 @@ def usuarios_lista(request):
     return render(request, 'usuarios.html', {'usuarios': usuarios})
 
 
-
-
-
 class VistaJuegosLista(View):
     nombre_template = 'lista_juegos_A-Z.html'
     juegos_por_pag = 6
 
     def get(self, request, *args, **kwargs):
-        juegos_total = Juegos.objects.all().order_by('title')
+        query = request.GET.get('q')
+        
+        # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
+        juegos = Juegos.objects.all().order_by('-metacritic')
 
-        paginator = Paginator(juegos_total, self.juegos_por_pag)
+        if query:
+            # Filtra los juegos por título
+            juegos = juegos.filter(title__icontains=query).order_by('-metacritic')
+
+            if juegos.count() == 1:
+                juego = juegos.first()
+                return redirect('detalles_juego', juego_id=juego.id)
+
+        # Limita la consulta a los 4 primeros juegos con mayor Metacritic
+        mejores_juegos = juegos[:4]
+
+        paginator = Paginator(juegos, self.juegos_por_pag)
         page = request.GET.get('page')
 
         try:
-            juegos = paginator.page(page)
+            juegos_pagina = paginator.page(page)
         except PageNotAnInteger:
-            juegos = paginator.page(1)
+            juegos_pagina = paginator.page(1)
         except EmptyPage:
-            juegos = paginator.page(paginator.num_pages)
+            juegos_pagina = paginator.page(paginator.num_pages)
 
         context = {
-            'juegos_lista': juegos,
+            'juegos_lista': juegos_pagina,
+            'mejores_juegos': mejores_juegos,
+            'query': query,
         }
 
         return render(request, self.nombre_template, context)
-    
+
+
 
 class VistaJuegosListaAlReves(View):
-    nombre_template = 'lista_juegos_Z-A.html'
+    nombre_template = 'lista_juegos_A-Z.html'
     juegos_por_pag = 6
 
     def get(self, request, *args, **kwargs):
+        query = request.GET.get('q')
         juegos_total = Juegos.objects.all().order_by('title').reverse()  
+        
+        # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
+        juegos = Juegos.objects.all().order_by('-metacritic')
 
-        paginator = Paginator(juegos_total, self.juegos_por_pag)
+        if query:
+            # Filtra los juegos por título
+            juegos = juegos.filter(title__icontains=query).order_by('-metacritic')
+
+            if juegos.count() == 1:
+                juego = juegos.first()
+                return redirect('detalles_juego', juego_id=juego.id)
+
+        # Limita la consulta a los 4 primeros juegos con mayor Metacritic
+        mejores_juegos = juegos[:4]
+
+        paginator = Paginator(juegos, self.juegos_por_pag)
         page = request.GET.get('page')
 
         try:
-            juegos = paginator.page(page)
+            juegos_pagina = paginator.page(page)
         except PageNotAnInteger:
-            juegos = paginator.page(1)
+            juegos_pagina = paginator.page(1)
         except EmptyPage:
-            juegos = paginator.page(paginator.num_pages)
+            juegos_pagina = paginator.page(paginator.num_pages)
 
         context = {
-            'juegos_lista': juegos,
+            'juegos_lista': juegos_pagina,
+            'mejores_juegos': mejores_juegos,
+            'query': query,
         }
 
         return render(request, self.nombre_template, context)

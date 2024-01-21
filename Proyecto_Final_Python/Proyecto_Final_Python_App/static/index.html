@@ -243,42 +243,17 @@
                                 <h5>TOP METACRITIC</h5>
                             </div>
                             <div class="filter__gallery">
-                                <div class="product__sidebar__view__item set-bg mix day years"
-                                    data-setbg="{% static 'img/sidebar/persona5_portada.png' %}">
-                                    <div class="ep">
-                                    <img src="{% static 'img/sidebar/metacritic_icono.png'%}" alt="icono" calss="icono">
-                                    93/100
+                                {% for juego in juegos %}
+                                    <div class="product__sidebar__view__item set-bg mix day years"
+                                         data-setbg="{{ juego.image.url }}">
+                                        <div class="ep">
+                                            <img src="{% static 'img/sidebar/metacritic_icono.png' %}" alt="icono" class="icono">
+                                            {{ juego.metacritic }}/100
+                                        </div>
+                                        <div class="view">Duración: {{ juego.duracion }}</div>
+                                        <h5><a href="{% url 'detalles_juego' juego.id %}">{{ juego.title }}</a></h5>
                                     </div>
-                                    <div class="view">Duración: 95-100hs</div>
-                                    <h5><a href="#">Persona 5</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix month week"
-                                    data-setbg="{% static 'img/sidebar/bloodborne_portada.png' %}">
-                                    <div class="ep">
-                                        <img src="{% static 'img/sidebar/metacritic_icono.png'%}" alt="icono" calss="icono">
-                                        92/100
-                                        </div>
-                                    <div class="view">Duración: 30-50hs</div>
-                                    <h5><a href="#">Bloodborne</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix week years"
-                                    data-setbg="{% static 'img/sidebar/ffx_portada.png' %}">
-                                    <div class="ep">
-                                        <img src="{% static 'img/sidebar/metacritic_icono.png'%}" alt="icono" calss="icono">
-                                        92/100
-                                        </div>
-                                    <div class="view">Duración: 40-55hs</div>
-                                    <h5><a href="#">Final Fantasy X</a></h5>
-                                </div>
-                                <div class="product__sidebar__view__item set-bg mix years month"
-                                    data-setbg="{% static 'img/sidebar/hollowknight_portada.jpg' %}">
-                                    <div class="ep">
-                                        <img src="{% static 'img/sidebar/metacritic_icono.png'%}" alt="icono" calss="icono">
-                                        89/100
-                                        </div>
-                                    <div class="view">Duración: 15-20hs</div>
-                                    <h5><a href="#">Hollow Knight</a></h5>
-                                </div>
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
