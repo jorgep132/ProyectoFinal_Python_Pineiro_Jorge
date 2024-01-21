@@ -1,7 +1,0 @@
-python manage.py shell
-
-from Proyecto_Final_Python_App.models import Juegos
-
-juego1 = Juegos(title='Prince of Persia: The Lost Crown', image="img/juegos/prince_of_persia.png")
-juego2 = Juegos(title='Persona 3: Reload', image="img/juegos/persona3_reload.jpg")
-juego3 = Juegos(title='Final Fantasy VII: Rebirth', image="img/juegos/ffvii_rebirth.png")
