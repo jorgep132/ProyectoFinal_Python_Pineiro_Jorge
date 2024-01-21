@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from Proyecto_Final_Python_App.views import index, detalles_juego, registro_usuario, login_usuario, usuarios_lista, agregar_juegos, VistaJuegosLista, VistaJuegosListaAlReves
+from Proyecto_Final_Python_App.views import index, detalles_juego, registro_usuario, login_usuario, usuarios_lista, agregar_juegos,editar_juego, borrar_juego, administrar_juegos, VistaJuegosLista, VistaJuegosListaAlReves
 
 
 
@@ -17,7 +17,11 @@ urlpatterns = [
     path('registro/', registro_usuario, name='registro'),
     path('cerrar_sesion/', LogoutView.as_view(next_page='index'), name='cerrar_sesion'),
     path('usuarios/', usuarios_lista, name='usuarios'),
-    path('agregar_juegos/', agregar_juegos, name='agregar_juegos'),
+    # path('agregar_juegos/', agregar_juegos, name='agregar_juegos'),
+    path('administrar_juegos/', administrar_juegos, name='administrar_juegos'),  # Nueva URL
+    path('administrar_juegos/agregar_juegos/', agregar_juegos, name='agregar_juegos'),
+    path('administrar_juegos/editar_juego/<str:juego_id>/', editar_juego, name='editar_juego'),
+    path('administrar_juegos/borrar_juego/<str:juego_id>/', borrar_juego, name='borrar_juego'),
     
 ]
  

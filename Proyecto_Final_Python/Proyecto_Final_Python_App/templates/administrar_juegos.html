@@ -1,25 +1,23 @@
-<!-- agregar_juegos.html -->
+<!-- lista_juegos.html -->
 
 <html lang="en">
 <head>
     <!-- ... tus metaetiquetas ... -->
-    <title>Agregar Juego</title>
+    <title>Lista de Juegos</title>
 </head>
 <body>
 
-<h2>Agregar Juego</h2>
-
-<!-- Formulario para agregar juegos -->
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Guardar</button>
-</form>
-
-<hr>
+<h2>Lista de Juegos</h2>
 
 <!-- Tabla para mostrar la lista de juegos -->
 <table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
     <tbody>
         {% for juego in juegos %}
         <tr>
@@ -33,7 +31,6 @@
         {% endfor %}
     </tbody>
 </table>
-<button type='submit'><a href="{% url 'administrar_juegos' %}">Volver al listado de juegos</a></button>
-
+    <button type='submit'><a href="{% url 'agregar_juegos' %}">Agregar juegos</a></button>
 </body>
 </html>

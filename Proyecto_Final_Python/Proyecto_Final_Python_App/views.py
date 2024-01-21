@@ -1,9 +1,8 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
-from django.contrib import messages
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
 from .forms import JuegosForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
 
@@ -31,6 +30,9 @@ def index(request):
     return render(request, 'index.html', context)
 
 ##### Crear juegos desde la pag #########
+def administrar_juegos(request):
+    juegos = Juegos.objects.all()
+    return render(request, 'administrar_juegos.html', {'juegos': juegos})
 
 
 def agregar_juegos(request):
@@ -39,7 +41,6 @@ def agregar_juegos(request):
         if form.is_valid():
             # Guardar los datos si el formulario es válido
             form.save()
-            messages.success(request, 'Juego agregado correctamente.')
             # Limpiar el formulario para campos vacíos
             form = JuegosForm()
     else:
@@ -47,6 +48,25 @@ def agregar_juegos(request):
         form = JuegosForm()
 
     return render(request, 'agregar_juegos.html', {'form': form})
+
+
+def editar_juego(request, juego_id):
+    juego = get_object_or_404(Juegos, id=juego_id)
+    
+    if request.method == 'POST':
+        form = JuegosForm(request.POST, request.FILES, instance=juego)
+        if form.is_valid():
+            form.save()
+            return redirect('administrar_juegos')
+    else:
+        form = JuegosForm(instance=juego)
+
+    return render(request, 'editar_juego.html', {'form': form, 'juego': juego})
+
+def borrar_juego(request, juego_id):
+    juego = get_object_or_404(Juegos, id=juego_id)
+    juego.delete()
+    return redirect('administrar_juegos')
 
 
 
