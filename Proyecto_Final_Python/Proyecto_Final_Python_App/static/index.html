@@ -255,7 +255,7 @@
                                             {{ juego.metacritic }}/100
                                         </div>
                                         <div class="view">Duración: {{ juego.duracion }}</div>
-                                        <h5><a href="{% url 'detalles_juego' juego.id %}">{{ juego.title }}</a></h5>
+                                        <h5><a href="{{ juego.get_absolute_url }}">{{ juego.title }}</a></h5>
                                     </div>
                                 {% endfor %}
                             </div>

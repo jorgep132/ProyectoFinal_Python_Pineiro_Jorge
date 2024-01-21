@@ -109,6 +109,9 @@
                                 <div class="col-lg-8 col-md-8 col-sm-6">
                                     <div class="section-title">
                                         <h4>TITULOS</h4>
+                                    {% if user.is_authenticated and user.is_superuser %}
+                                        <li><a href="{% url 'agregar_juegos' %}">Agregar juegos</a></li>
+                                    {% endif %}
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-6">
@@ -134,7 +137,7 @@
                                             <li>{{juego.genero2}}</li>
                                             <li>{{juego.genero3}}</li>
                                         </ul>
-                                        <h5><a href="{{ juego.url }}">{{juego.title}}</a></h5>
+                                        <h5><a href="{{ juego.get_absolute_url }}">{{juego.title}}</a></h5>
                                     </div>
                                 </div>
                             </div>

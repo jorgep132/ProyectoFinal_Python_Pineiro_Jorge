@@ -146,40 +146,6 @@ def detalles_juego(request, juego_id):
     juego = Juegos.objects.get(id=juego_id)
     return render(request, 'detalles_juegos.html', {'juego': juego})
 
-# def registro_usuario(request):
-#     if request.method == 'POST':
-#         email = request.POST['email']
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         is_admin = request.POST.get('is_admin', False)
-
-#         errors = {}
-
-#         if not email or not username or not password:
-#             errors['error_mail'] = 'Todos los campos son obligatorios.'
-
-#         if UsuarioEstandar.objects.filter(email=email).exists():
-#             errors['error_mail'] = 'Este correo electrónico ya está en uso.'
-
-#         if UsuarioEstandar.objects.filter(username=username).exists():
-#             errors['error_username'] = 'Este nombre de usuario ya está en uso.'
-#         elif len(username) < 6 or len(username) > 12:
-#             errors['error_username'] = 'El nombre de usuario debe tener entre 6 y 12 caracteres.'
-
-#         if len(password) < 8 or len(password) > 16:
-#             errors['error_password'] = 'La contraseña debe tener entre 8 y 16 caracteres.'
-
-#         if errors:
-#             return render(request, 'registro.html', {'errors': errors})
-
-#         if is_admin:
-#             usuario_estandar = UsuarioEstandar.objects.create_superuser(username=username, email=email, password=password)
-#         else:
-#             usuario_estandar = UsuarioEstandar.objects.create_user(username=username, email=email, password=password)
-
-#         return redirect('index')
-
-#     return render(request, 'registro.html')
 
 def registro_usuario(request):
     query = request.GET.get('q')

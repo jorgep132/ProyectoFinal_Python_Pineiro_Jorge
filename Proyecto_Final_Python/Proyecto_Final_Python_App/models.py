@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin, AbstractUser
 from django.core.validators import  MaxValueValidator
+from django.utils.text import slugify
+from django.urls import reverse
 
 
 # Create your models here.
@@ -14,7 +16,7 @@ class Juegos(models.Model):
     description = models.CharField(max_length=512, default='')
     image = models.ImageField(upload_to='static/img/juegos')
     image2 = models.ImageField(upload_to='static/img/juegos', default='')
-    url = models.CharField(max_length=255, default='/default-url/')
+    url = models.SlugField(max_length=255, unique=True, editable=False)
     genero1 = models.CharField(max_length=32, default='')
     genero2 = models.CharField(max_length=32, default='')
     genero3 = models.CharField(max_length=32, default='')
@@ -26,6 +28,14 @@ class Juegos(models.Model):
     trailer = models.URLField(default='')
     tienda = models.URLField(default='')
 
+    def save(self, *args, **kwargs):
+    # Generar la URL automáticamente basada en el ID del juego
+        self.url = f'detalles_juego/{self.id}'
+        super().save(*args, **kwargs)
+        
+    def get_absolute_url(self):
+        return reverse('detalles_juego', kwargs={'juego_id': self.id})
+    
     def __str__(self):
         return self.title
 
