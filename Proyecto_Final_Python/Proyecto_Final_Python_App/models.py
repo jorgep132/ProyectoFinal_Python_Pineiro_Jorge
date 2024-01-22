@@ -39,11 +39,11 @@ class Juegos(models.Model):
     def __str__(self):
         return self.title
     
-class Proximamente(models.Model):
+class Lanzamiento(models.Model):
     title = models.CharField(max_length=50, default='')
     image = models.ImageField(upload_to='media/img/juegos')
-    lanzamiento = models.DateField()
-    url = models.URLField(default='')
+    fecha = models.DateField()
+    trailer = models.URLField(default='')
     
     def __str__(self):
         return self.title

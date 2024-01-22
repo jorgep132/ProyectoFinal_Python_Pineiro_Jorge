@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from Proyecto_Final_Python_App.views import index, detalles_juego, registro_usuario, login_usuario, administrar_usuarios, agregar_usuarios, editar_usuario, borrar_usuario, agregar_juegos,editar_juego, borrar_juego, administrar_juegos, ActualizarComentarioView, EliminarComentarioView, VistaJuegosLista, VistaJuegosListaAlReves
+from Proyecto_Final_Python_App.views import index, administrar_lanzamientos, editar_lanzamiento, agregar_lanzamientos, borrar_lanzamiento, detalles_juego, registro_usuario, login_usuario, administrar_usuarios, agregar_usuarios, editar_usuario, borrar_usuario, agregar_juegos,editar_juego, borrar_juego, administrar_juegos, ActualizarComentarioView, EliminarComentarioView, VistaJuegosLista, VistaJuegosListaAlReves
 
 
 
@@ -26,6 +26,10 @@ urlpatterns = [
     path('administrar_juegos/borrar_juego/<str:juego_id>/', borrar_juego, name='borrar_juego'),
     path('actualizar_comentario/<int:comentario_id>/', ActualizarComentarioView.as_view(), name='actualizar_comentario'),
     path('eliminar_comentario/<int:comentario_id>/', EliminarComentarioView.as_view(), name='eliminar_comentario'),
+    path('administrar_lanzamientos/', administrar_lanzamientos, name='administrar_lanzamientos'),
+    path('administrar_lanzamientos/agregar_lanzamientos/', agregar_lanzamientos, name='agregar_lanzamientos'),
+    path('administrar_lanzamientos/editar_lanzamiento/<str:lanzamiento_title>/', editar_lanzamiento, name='editar_lanzamiento'),
+    path('administrar_lanzamientos/borrar_lanzamiento/<str:lanzamiento_title>/', borrar_lanzamiento, name='borrar_lanzamiento'),
     
 ]
  

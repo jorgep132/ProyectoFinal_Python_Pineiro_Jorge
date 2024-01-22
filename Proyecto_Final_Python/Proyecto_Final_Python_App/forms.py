@@ -1,5 +1,5 @@
 from django import forms
-from Proyecto_Final_Python_App.models import UsuarioEstandar, Juegos, Comentario
+from Proyecto_Final_Python_App.models import UsuarioEstandar, Juegos, Comentario, Lanzamiento
 
 class UsuarioEstandarForm(forms.ModelForm):
     class Meta:
@@ -21,3 +21,9 @@ class ActualizarComentarioForm(forms.ModelForm):
     class Meta:
         model = Comentario
         fields = ['contenido']
+        
+
+class LanzamientoForm(forms.ModelForm):
+    class Meta:
+        model = Lanzamiento
+        fields = '__all__'

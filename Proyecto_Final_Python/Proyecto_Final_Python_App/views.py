@@ -2,8 +2,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
 from django import forms
 from django.urls import reverse
-from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar, Comentario, Proximamente
-from .forms import JuegosForm, UsuarioEstandarForm, AgregarComentarioForm, ActualizarComentarioForm
+from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar, Comentario, Lanzamiento
+from .forms import JuegosForm, UsuarioEstandarForm, AgregarComentarioForm, ActualizarComentarioForm, LanzamientoForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
@@ -20,7 +20,7 @@ def index(request):
     # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
     juegos = Juegos.objects.all().order_by('-metacritic')
     
-    proximos_lanzamientos = Proximamente.objects.all()
+    proximos_lanzamientos = Lanzamiento.objects.all()
 
     if query:
         # Filtra los juegos por título antes de limitar a los 4 primeros
@@ -37,6 +37,71 @@ def index(request):
 
     context = {'juegos': juegos, 'query': query, 'fecha_actual': fecha_actual, 'proximos_lanzamientos':proximos_lanzamientos}
     return render(request, 'index.html', context)
+
+################ LANZAMIENTOS ###############
+
+def administrar_lanzamientos(request):
+    lanzamientos = Lanzamiento.objects.all()
+    return render(request, 'administrar_lanzamientos.html', {'lanzamientos': lanzamientos})
+
+
+def agregar_lanzamientos(request):
+    if request.method == 'POST':
+        form = LanzamientoForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Guardar los datos si el formulario es válido
+            form.save()
+            # Limpiar el formulario para campos vacíos
+            form = LanzamientoForm()
+    else:
+        # Si no es una solicitud POST, crear un nuevo formulario en blanco
+        form = LanzamientoForm()
+
+    return render(request, 'agregar_lanzamientos.html', {'form': form})
+
+
+def editar_lanzamiento(request, lanzamiento_title):
+    lanzamiento = get_object_or_404(Lanzamiento, title=lanzamiento_title)
+
+    if request.method == 'POST':
+        form = LanzamientoForm(request.POST, request.FILES, instance=lanzamiento)
+        if form.is_valid():
+            form.save()
+            return redirect('administrar_lanzamientos')  # Cambiado a 'lista_juegos' para redirigir a la lista de juegos
+    else:
+        # Al editar, establece el campo 'id' como no editable y oculto
+        form = LanzamientoForm(instance=lanzamiento)
+
+    return render(request, 'editar_lanzamiento.html', {'form': form, 'lanzamiento': lanzamiento})
+
+def borrar_lanzamiento(request, lanzamiento_title):
+    lanzamiento = get_object_or_404(Lanzamiento, title=lanzamiento_title)
+    lanzamiento.delete()
+    return redirect('administrar_lanzamientos')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##################################################
+
+
+
 
 
 

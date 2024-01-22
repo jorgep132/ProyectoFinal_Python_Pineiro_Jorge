@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+    <title>Editar lanzamiento</title>
+</head>
+<body>
+
+<h2>Editar lanzamiento</h2>
+
+<!-- Formulario para editar el juego -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+</form>
+
+</body>
+</html>

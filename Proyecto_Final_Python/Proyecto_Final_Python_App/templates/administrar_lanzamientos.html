@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ... tus metaetiquetas ... -->
+    <title>Lista de Lanzamientos</title>
+</head>
+<body>
+
+<h2>Lista de Lanzamientos</h2>
+
+<!-- Tabla para mostrar la lista de lanzamientos -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Fecha de lanzamiento</th>
+            <th>Trailer</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for lanzamiento in lanzamientos %}
+        <tr>
+            <td>{{ lanzamiento.title }}</td>
+            <td>{{ lanzamiento.fecha }}</td>
+            <td><a href="{{ lanzamiento.trailer }}" target="_blank">{{lanzamiento.trailer}}</a></td>
+            <td>
+                <a href="{% url 'editar_lanzamiento' lanzamiento.title %}">Editar</a>
+                <a href="{% url 'borrar_lanzamiento' lanzamiento.title %}">Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<button type='submit'><a href="{% url 'agregar_lanzamientos' %}">Agregar lanzamiento</a></button>
+<button type='submit'><a href="{% url 'index' %}">Volver al index</a></button>
+
+</body>
+</html>
