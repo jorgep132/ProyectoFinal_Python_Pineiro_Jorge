@@ -132,6 +132,11 @@
                                             <li><span>Metacritic:</span>{{juego.metacritic}}</li>
                                             <li><span>Duración:</span>{{juego.duracion}}</li>
                                             <li><span>Plataforma:</span>{{juego.plataforma}}</li>
+                                            <form method="post" action="{% url 'detalles_juego' juego_id=juego.id %}">
+                                                {% csrf_token %}
+                                                {{ form.as_p }}
+                                                <input type="submit" value="Enviar Valoración">
+                                            </form>
                                         </ul>
                                     </div>
                                 </div>
