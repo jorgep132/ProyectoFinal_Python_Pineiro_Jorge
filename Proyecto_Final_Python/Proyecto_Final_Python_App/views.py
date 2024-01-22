@@ -20,7 +20,7 @@ def index(request):
     # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
     juegos = Juegos.objects.all().order_by('-metacritic')
     
-    proximos_lanzamientos = Lanzamiento.objects.all()
+    lanzamientos = Lanzamiento.objects.all()
 
     if query:
         # Filtra los juegos por título antes de limitar a los 4 primeros
@@ -35,7 +35,7 @@ def index(request):
     # Limita la consulta a los 4 primeros juegos con mayor Metacritic
     juegos = juegos[:4]
 
-    context = {'juegos': juegos, 'query': query, 'fecha_actual': fecha_actual, 'proximos_lanzamientos':proximos_lanzamientos}
+    context = {'juegos': juegos, 'query': query, 'fecha_actual': fecha_actual, 'lanzamientos':lanzamientos}
     return render(request, 'index.html', context)
 
 ################ LANZAMIENTOS ###############

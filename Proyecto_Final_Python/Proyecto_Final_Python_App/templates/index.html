@@ -33,7 +33,7 @@
 
     <!-- Header heredado -->
     {% include 'header.html' %}
-
+    
     <!-- Slides de juegos principales -->
     <section class="hero">
         <div class="container">
@@ -53,9 +53,9 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <h2><a href="http://127.0.0.1:8000/detalles_juego/P3R" style="color: white; text-decoration: none;">Persona 3: Reload</a></h2>
-                                <p>El nuevo remake de Atlus nos trae el clásico japonés Persona 3 </p>
-                                <a href="https://www.youtube.com/watch?v=3wcKA9nqyY0" target="_blank"><span>Ver trailer</span> <i class="fa fa-angle-right"></i></a>
+                                <h2><a href="http://127.0.0.1:8000/detalles_juego/BG3" style="color: white; text-decoration: none;">Baldur's Gate 3</a></h2>
+                                <p>Mejor juego del año 2023</p>
+                                <a href="https://www.youtube.com/watch?v=1T22wNvoNiU" target="_blank"><span>Ver trailer</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -64,9 +64,9 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <h2><a href="http://127.0.0.1:8000/detalles_juego/FFVIIR" style="color: white; text-decoration: none;">Final Fantasy VII: Rebirth</a></h2>
-                                <p>Segunda parte de la reimaginación de Final Fantasy VII</p>
-                                <a href="https://www.youtube.com/watch?v=kovnU6z6yEA" target="_blank"><span>Ver trailer</span> <i class="fa fa-angle-right"></i></a>
+                                <h2><a href="http://127.0.0.1:8000/detalles_juego/FFVIIR" style="color: white; text-decoration: none;">Alan Wake 2</a></h2>
+                                <p>Una obra experimental, excéntrica y fascinante.</p>
+                                <a href="https://www.youtube.com/watch?v=dlQ3FeNu5Yw" target="_blank"><span>Ver trailer</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -87,17 +87,18 @@
                                 <div class="section-title">
                                     <h4>PROXIMOS LANZAMIENTOS</h4>
                                 </div>
+                                <p><a href="{% url 'administrar_lanzamientos' %}">Administrar lanzamientos</a></p>
                             </div>
                         </div>
                         <div class="row">
-                            {% for proximo in proximos_lanzamientos %}
+                            {% for lanzamiento in lanzamientos %}
                             <div class="col-lg-4 col-md-6 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="{{ proximo.image.url }}">                                  
-                                    <div class="view"> {{ proximo.lanzamiento }}</div>
+                                    <div class="product__item__pic set-bg" data-setbg="{{ lanzamiento.image.url }}">                                  
+                                    <div class="view"> {{ lanzamiento.fecha }}</div>
                                     </div>
                                     <div class="product__item__text">
-                                    <h5><a href="{{ proximo.get_absolute_url }}">{{ proximo.title }}</a></h5>
+                                    <h5><a href="{{ lanzamiento.trailer }}" target=_blank>{{ lanzamiento.title }}</a></h5>
                                     </div>
                                 </div>
                             </div>

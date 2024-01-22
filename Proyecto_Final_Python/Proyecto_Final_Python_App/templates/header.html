@@ -16,8 +16,10 @@
                             <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
                             <li><a>Administrar<span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
+                                    <li><a href="{% url 'administrar_lanzamientos' %}">Administrar lanzamientos</a></li>
                                     <li><a href="{% url 'administrar_juegos' %}">Administrar juegos</a></li>
                                     <li><a href="{% url 'administrar_usuarios' %}">Administrar usuarios</a></li>
+                                    
                                 </ul>
                             </li>
                             <li><a href="{% url 'lista_juegos_A-Z' %}">Lista de Juegos</a></li>
