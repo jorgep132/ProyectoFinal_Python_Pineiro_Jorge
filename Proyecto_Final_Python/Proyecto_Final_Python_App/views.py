@@ -20,7 +20,7 @@ def index(request):
     # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
     juegos = Juegos.objects.all().order_by('-metacritic')
     
-    lanzamientos = Lanzamiento.objects.all()
+    lanzamientos = Lanzamiento.objects.all().order_by('fecha')
 
     if query:
         # Filtra los juegos por título antes de limitar a los 4 primeros
@@ -325,30 +325,54 @@ class VistaJuegosListaAlReves(View):
         return render(request, self.nombre_template, context)
     
 
+# def detalles_juego(request, juego_id):
+#     juego = get_object_or_404(Juegos, id=juego_id)
+
+#     # Procesar el formulario de valoración y comentarios si se envía
+#     if request.method == 'POST':
+#         form = AgregarComentarioForm(request.POST)
+#         if form.is_valid():
+#             comentario_texto = form.cleaned_data['comentario']
+
+#             # Guardar la valoración en el juego
+#             juego.save()
+
+#             # Guardar el comentario asociado al juego
+#             if comentario_texto:
+#                 Comentario.objects.create(juego=juego, autor=request.user.username, contenido=comentario_texto)
+
+#             # Después de procesar el formulario, redirigir a la página de detalles del juego
+#             return HttpResponseRedirect(request.path_info)  # Esto redirige a la misma página
+
+#     else:
+#         form = AgregarComentarioForm()
+
+#     # Obtener los comentarios asociados al juego
+#     comentarios = Comentario.objects.filter(juego=juego)
+
+#     return render(request, 'detalles_juegos.html', {'juego': juego, 'form': form, 'comentarios': comentarios})
+
 def detalles_juego(request, juego_id):
     juego = get_object_or_404(Juegos, id=juego_id)
+    comentarios = Comentario.objects.filter(juego=juego)
 
-    # Procesar el formulario de valoración y comentarios si se envía
     if request.method == 'POST':
         form = AgregarComentarioForm(request.POST)
         if form.is_valid():
             comentario_texto = form.cleaned_data['comentario']
 
-            # Guardar la valoración en el juego
-            juego.save()
+            # No es necesario guardar el juego aquí, ya que solo estamos añadiendo un comentario
+            # juego.save()
 
-            # Guardar el comentario asociado al juego
             if comentario_texto:
+                # Crear el comentario asociado al juego
                 Comentario.objects.create(juego=juego, autor=request.user.username, contenido=comentario_texto)
 
-            # Después de procesar el formulario, redirigir a la página de detalles del juego
-            return HttpResponseRedirect(request.path_info)  # Esto redirige a la misma página
+            # Redirigir a la página de detalles del juego después de procesar el formulario
+            return HttpResponseRedirect(request.path_info)
 
     else:
         form = AgregarComentarioForm()
-
-    # Obtener los comentarios asociados al juego
-    comentarios = Comentario.objects.filter(juego=juego)
 
     return render(request, 'detalles_juegos.html', {'juego': juego, 'form': form, 'comentarios': comentarios})
 
