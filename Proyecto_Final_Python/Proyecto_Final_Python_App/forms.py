@@ -13,4 +13,3 @@ class JuegosForm(forms.ModelForm):
     class Meta:
         model = Juegos
         fields = '__all__'
-            

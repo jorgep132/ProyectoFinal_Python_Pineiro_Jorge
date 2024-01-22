@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
+from django import forms
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
 from .forms import JuegosForm
 from django.shortcuts import render, redirect, get_object_or_404
@@ -52,14 +53,17 @@ def agregar_juegos(request):
 
 def editar_juego(request, juego_id):
     juego = get_object_or_404(Juegos, id=juego_id)
-    
+
     if request.method == 'POST':
         form = JuegosForm(request.POST, request.FILES, instance=juego)
         if form.is_valid():
             form.save()
-            return redirect('administrar_juegos')
+            return redirect('administrar_juegos')  # Cambiado a 'lista_juegos' para redirigir a la lista de juegos
     else:
+        # Al editar, establece el campo 'id' como no editable y oculto
         form = JuegosForm(instance=juego)
+        form.fields['id'].widget.attrs['readonly'] = True
+        form.fields['id'].widget = forms.HiddenInput()
 
     return render(request, 'editar_juego.html', {'form': form, 'juego': juego})
 
