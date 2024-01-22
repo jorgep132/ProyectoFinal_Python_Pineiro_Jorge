@@ -167,7 +167,7 @@
                             <div class="section-title">
                                 <h5>Tu Comentario</h5>
                             </div>
-                            <form method="post" action="{% url 'valorar_juego' juego_id=juego.id %}">
+                            <form method="post" action="{% url 'detalles_juego' juego_id=juego.id %}">
                                 {% csrf_token %}
                                 <textarea name="comentario" placeholder="Tu Comentario"></textarea>
                                 <button type="submit"><i class="fa fa-location-arrow"></i> Enviar Comentario</button>

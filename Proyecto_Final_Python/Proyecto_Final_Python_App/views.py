@@ -3,7 +3,7 @@ from django.views import View
 from django import forms
 from django.urls import reverse
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar, Comentario
-from .forms import JuegosForm, UsuarioEstandarForm, ValorarJuegoForm
+from .forms import JuegosForm, UsuarioEstandarForm, AgregarComentarioForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
@@ -77,28 +77,6 @@ def borrar_juego(request, juego_id):
     return redirect('administrar_juegos')
 
 
-def valorar_juego(request, juego_id):
-    juego = get_object_or_404(Juegos, id=juego_id)
-
-    if request.method == 'POST':
-        form = ValorarJuegoForm(request.POST)
-        if form.is_valid():
-            comentario_texto = form.cleaned_data['comentario']
-
-            # Guardar la valoración en el juego
-            juego.save()
-
-            # Guardar el comentario asociado al juego
-            if comentario_texto:
-                Comentario.objects.create(juego=juego, autor=request.user.username, contenido=comentario_texto)
-
-            # Redirigir a la página de detalles del juego
-            return HttpResponseRedirect(reverse('detalles_juego', args=[juego_id]))
-
-    else:
-        form = ValorarJuegoForm()
-
-    return render(request, 'valorar_juego.html', {'juego': juego, 'form': form})
 
 
 ##########################################
@@ -282,13 +260,11 @@ def detalles_juego(request, juego_id):
 
     # Procesar el formulario de valoración y comentarios si se envía
     if request.method == 'POST':
-        form = ValorarJuegoForm(request.POST)
+        form = AgregarComentarioForm(request.POST)
         if form.is_valid():
-            valoracion = form.cleaned_data['valoracion']
             comentario_texto = form.cleaned_data['comentario']
 
             # Guardar la valoración en el juego
-            juego.valoracion = valoracion
             juego.save()
 
             # Guardar el comentario asociado al juego
@@ -299,7 +275,7 @@ def detalles_juego(request, juego_id):
             return HttpResponseRedirect(request.path_info)  # Esto redirige a la misma página
 
     else:
-        form = ValorarJuegoForm()
+        form = AgregarComentarioForm()
 
     # Obtener los comentarios asociados al juego
     comentarios = Comentario.objects.filter(juego=juego)

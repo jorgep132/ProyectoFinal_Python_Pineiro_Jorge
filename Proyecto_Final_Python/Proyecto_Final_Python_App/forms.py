@@ -1,5 +1,5 @@
 from django import forms
-from Proyecto_Final_Python_App.models import UsuarioEstandar, Juegos
+from Proyecto_Final_Python_App.models import UsuarioEstandar, Juegos, Comentario
 
 class UsuarioEstandarForm(forms.ModelForm):
     class Meta:
@@ -14,5 +14,10 @@ class JuegosForm(forms.ModelForm):
         model = Juegos
         fields = '__all__'
 
-class ValorarJuegoForm(forms.Form):
+class AgregarComentarioForm(forms.Form):
     comentario = forms.CharField(label='Comentario', widget=forms.Textarea(attrs={'rows': 4}), required=False)
+    
+class ActualizarComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['contenido']
