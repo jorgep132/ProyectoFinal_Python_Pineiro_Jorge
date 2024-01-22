@@ -1,0 +1,20 @@
+<!-- editar_usuario.html -->
+
+<html lang="en">
+<head>
+    <!-- ... tus metaetiquetas ... -->
+    <title>Editar Usuario</title>
+</head>
+<body>
+
+<h2>Editar Usuario</h2>
+
+<!-- Formulario para editar el juego -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar cambios</button>
+</form>
+
+</body>
+</html>

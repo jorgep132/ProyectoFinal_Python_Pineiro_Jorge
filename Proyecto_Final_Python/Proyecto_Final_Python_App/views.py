@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
 from django import forms
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
-from .forms import JuegosForm
+from .forms import JuegosForm, UsuarioEstandarForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
@@ -31,6 +31,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 ##### Crear juegos desde la pag #########
+
 def administrar_juegos(request):
     juegos = Juegos.objects.all()
     return render(request, 'administrar_juegos.html', {'juegos': juegos})
@@ -79,9 +80,72 @@ def borrar_juego(request, juego_id):
 
 ### Manejo de usuarios ###
 
-def usuarios_lista(request):
+# def usuarios_lista(request):
+#     usuarios = UsuarioEstandar.objects.all()
+#     return render(request, 'usuarios.html', {'usuarios': usuarios})
+
+def administrar_usuarios(request):
     usuarios = UsuarioEstandar.objects.all()
-    return render(request, 'usuarios.html', {'usuarios': usuarios})
+    return render(request, 'administrar_usuarios.html', {'usuarios': usuarios})
+
+
+def agregar_usuarios(request):
+    if request.method == 'POST':
+        form = UsuarioEstandarForm(request.POST, request.FILES)
+        if form.is_valid():
+            # Guardar los datos si el formulario es válido
+            form.save()
+            # Limpiar el formulario para campos vacíos
+            return redirect ('administrar_usuarios')
+    else:
+        # Si no es una solicitud POST, crear un nuevo formulario en blanco
+        form = UsuarioEstandarForm()
+
+    return render(request, 'agregar_usuarios.html', {'form': form})
+
+
+def editar_usuario(request, usuario_username):
+    usuario = get_object_or_404(UsuarioEstandar, username=usuario_username)
+
+    if request.method == 'POST':
+        form = UsuarioEstandarForm(request.POST, request.FILES, instance=usuario)
+        
+        if form.is_valid():
+            form.save()
+            return redirect('administrar_usuarios') 
+    else:
+        form = UsuarioEstandarForm(instance=usuario)
+
+    return render(request, 'editar_usuario.html', {'form': form, 'usuario': usuario})
+
+def borrar_usuario(request, usuario_username):
+    usuario = get_object_or_404(UsuarioEstandar, username=usuario_username)
+    usuario.delete()
+    return redirect('administrar_usuarios')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#####################################################################
 
 
 class VistaJuegosLista(View):
@@ -219,7 +283,7 @@ def registro_usuario(request):
         else:
             usuario_estandar = UsuarioEstandar.objects.create_user(username=username, email=email, password=password)
 
-        return redirect('index')
+        return redirect('login')
 
     return render(request, 'registro.html')
 

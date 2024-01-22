@@ -1,0 +1,42 @@
+<!-- agregar_juegos.html -->
+
+<html lang="en">
+<head>
+    <!-- ... tus metaetiquetas ... -->
+    <title>Agregar Usuario</title>
+</head>
+<body>
+
+<h2>Agregar Usuario</h2>
+
+<!-- Formulario para agregar juegos -->
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Guardar</button>
+</form>
+
+<hr>
+
+<!-- Tabla para mostrar la lista de juegos -->
+<table border="1">
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.username }}</td>
+            <td>{{ usuario.password }}</td>
+            <td>{{ usuario.email }}
+            <td>{{ usuario.is_superuser }}</td>
+            <td>
+                <a href="{% url 'editar_usuario' usuario.username %}">Editar</a>
+                <a href="{% url 'borrar_usuario' juego.username %}">Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<button type='submit'><a href="{% url 'administrar_usuarios' %}">Volver al listado de usuarios</a></button>
+<button type='submit'><a href="{% url 'index' %}">Volver al index</a></button>
+
+</body>
+</html>

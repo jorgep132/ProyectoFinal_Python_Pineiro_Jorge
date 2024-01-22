@@ -1,0 +1,41 @@
+<!-- lista_juegos.html -->
+
+<html lang="en">
+<head>
+    <!-- ... tus metaetiquetas ... -->
+    <title>Lista de Usuarios</title>
+</head>
+<body>
+
+<h2>Lista de Usuarios</h2>
+
+<!-- Tabla para mostrar la lista de juegos -->
+<table border="1">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Administrador</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for usuario in usuarios %}
+        <tr>
+            <td>{{ usuario.username }}</td>
+            <td>{{ usuario.password }}</td>
+            <td>{{ usuario.email }}
+            <td>{{ usuario.is_superuser }}</td>
+            <td>
+                <a href="{% url 'editar_usuario' usuario.username %}">Editar</a>
+                <a href="{% url 'borrar_usuario' usuario.username %}">Borrar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    <button type='submit'><a href="{% url 'agregar_usuarios' %}">Agregar usuarios</a></button>
+    <button type='submit'><a href="{% url 'index' %}">Volver al index</a></button>
+</body>
+</html>
