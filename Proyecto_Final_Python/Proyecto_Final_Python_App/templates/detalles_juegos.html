@@ -157,6 +157,8 @@
                                     <div class="anime__review__item__text">
                                         <h6>{{ comentario.autor }} - <span>{{ comentario.fecha_creacion }}</span></h6>
                                         <p>{{ comentario.contenido }}</p>
+                                        <a href="{% url 'actualizar_comentario' comentario.id %}">Modificar</a>
+                                        <a href="{% url 'eliminar_comentario' comentario.id %}">Borrar</a>
                                     </div>
                                 </div>
                             {% endfor %}
@@ -167,11 +169,16 @@
                             <div class="section-title">
                                 <h5>Tu Comentario</h5>
                             </div>
+                            {% if user.is_authenticated %}
                             <form method="post" action="{% url 'detalles_juego' juego_id=juego.id %}">
                                 {% csrf_token %}
-                                <textarea name="comentario" placeholder="Tu Comentario"></textarea>
+                                <textarea name="comentario" placeholder="Escribe tu comentario..."></textarea>
                                 <button type="submit"><i class="fa fa-location-arrow"></i> Enviar Comentario</button>
                             </form>
+                            {% else %}
+                            <p>Debes iniciar sesión para comentar</p>
+                            <a href="{% url 'iniciar_sesion' %}" class="site-btn">Iniciar sesión</a>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from Proyecto_Final_Python_App.views import index, detalles_juego, registro_usuario, login_usuario, administrar_usuarios, agregar_usuarios, editar_usuario, borrar_usuario, agregar_juegos,editar_juego, borrar_juego, administrar_juegos, VistaJuegosLista, VistaJuegosListaAlReves
+from Proyecto_Final_Python_App.views import index, detalles_juego, registro_usuario, login_usuario, administrar_usuarios, agregar_usuarios, editar_usuario, borrar_usuario, agregar_juegos,editar_juego, borrar_juego, administrar_juegos, ActualizarComentarioView, EliminarComentarioView, VistaJuegosLista, VistaJuegosListaAlReves
 
 
 
@@ -24,6 +24,8 @@ urlpatterns = [
     path('administrar_juegos/agregar_juegos/', agregar_juegos, name='agregar_juegos'),
     path('administrar_juegos/editar_juego/<str:juego_id>/', editar_juego, name='editar_juego'),
     path('administrar_juegos/borrar_juego/<str:juego_id>/', borrar_juego, name='borrar_juego'),
+    path('actualizar_comentario/<int:comentario_id>/', ActualizarComentarioView.as_view(), name='actualizar_comentario'),
+    path('eliminar_comentario/<int:comentario_id>/', EliminarComentarioView.as_view(), name='eliminar_comentario'),
     
 ]
  

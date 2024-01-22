@@ -1,0 +1,29 @@
+<!-- actualizar_comentario.html -->
+
+<!DOCTYPE html>
+<html lang="zxx">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Actualizar Comentario">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Actualizar Comentario</title>
+
+    <!-- Tus enlaces a estilos, scripts, etc. aquí -->
+
+</head>
+<body>
+
+    <h2>Actualizar Comentario</h2>
+
+    <form method="post" action="{% url 'actualizar_comentario' comentario.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Actualizar Comentario</button>
+    </form>
+
+    <a href="{% url 'detalles_juego' juego_id=comentario.juego.id %}">Volver a los detalles del juego</a>
+
+</body>
+</html>

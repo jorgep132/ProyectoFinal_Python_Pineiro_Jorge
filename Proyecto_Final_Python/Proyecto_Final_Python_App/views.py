@@ -3,15 +3,17 @@ from django.views import View
 from django import forms
 from django.urls import reverse
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar, Comentario
-from .forms import JuegosForm, UsuarioEstandarForm, AgregarComentarioForm
+from .forms import JuegosForm, UsuarioEstandarForm, AgregarComentarioForm, ActualizarComentarioForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
+from datetime import datetime
 
 
 def index(request):
+    fecha_actual = datetime.now()
     query = request.GET.get('q')
 
     # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
@@ -30,7 +32,7 @@ def index(request):
     # Limita la consulta a los 4 primeros juegos con mayor Metacritic
     juegos = juegos[:4]
 
-    context = {'juegos': juegos, 'query': query}
+    context = {'juegos': juegos, 'query': query, 'fecha_actual': fecha_actual}
     return render(request, 'index.html', context)
 
 ##### Crear juegos desde la pag #########
@@ -250,10 +252,6 @@ class VistaJuegosListaAlReves(View):
 
         return render(request, self.nombre_template, context)
     
-    
-# def detalles_juego(request, juego_id):
-#     juego = Juegos.objects.get(id=juego_id)
-#     return render(request, 'detalles_juegos.html', {'juego': juego})
 
 def detalles_juego(request, juego_id):
     juego = get_object_or_404(Juegos, id=juego_id)
@@ -281,6 +279,37 @@ def detalles_juego(request, juego_id):
     comentarios = Comentario.objects.filter(juego=juego)
 
     return render(request, 'detalles_juegos.html', {'juego': juego, 'form': form, 'comentarios': comentarios})
+
+
+
+############ TEST COMENTARIO
+
+class ActualizarComentarioView(View):
+    template_name = 'actualizar_comentario.html'
+
+    def get(self, request, comentario_id):
+        comentario = get_object_or_404(Comentario, id=comentario_id)
+        form = ActualizarComentarioForm(instance=comentario)
+        return render(request, self.template_name, {'form': form, 'comentario': comentario})
+
+    def post(self, request, comentario_id):
+        comentario = get_object_or_404(Comentario, id=comentario_id)
+        form = ActualizarComentarioForm(request.POST, instance=comentario)
+
+        if form.is_valid():
+            form.save()
+            return redirect('detalles_juego', juego_id=comentario.juego.id)
+
+        return render(request, self.template_name, {'form': form, 'comentario': comentario})
+    
+class EliminarComentarioView(View):
+    def get(self, request, comentario_id):
+        comentario = get_object_or_404(Comentario, id=comentario_id)
+        juego_id = comentario.juego.id
+        comentario.delete()
+        return redirect('detalles_juego', juego_id=juego_id)
+    
+
 
 
 def registro_usuario(request):

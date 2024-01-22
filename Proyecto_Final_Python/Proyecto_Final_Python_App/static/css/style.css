@@ -74,7 +74,7 @@ h6 {
 p {
 	font-size: 15px;
 	font-family: "Mulish", sans-serif;
-	color: #3d3d3d;
+	color: #7e035d;
 	font-weight: 400;
 	line-height: 25px;
 	margin: 0 0 15px 0;
@@ -1152,7 +1152,7 @@ ol {
 .anime__details__form form textarea {
 	width: 100%;
 	font-size: 15px;
-	color: #b7b7b7;
+	color: #000;
 	padding-left: 20px;
 	padding-top: 12px;
 	height: 110px;
