@@ -26,67 +26,15 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
+    <!-- Pre-cargar la pagina -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="header__logo">
-                        <a href="{% url 'index' %}">
-                            <img src="{% static 'img/logo.png' %}" alt="">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="header__nav">
-                        <nav class="header__menu mobile-menu">
-                            <ul>
-                                <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
-                                <li><a>Administrar<span class="arrow_carrot-down"></span></a>
-                                    <ul class="dropdown">
-                                        <li><a href="{% url 'administrar_juegos' %}">Administrar juegos</a></li>
-                                        <li><a href="{% url 'administrar_usuarios' %}">Administrar usuarios</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="{% url 'lista_juegos_A-Z' %}">Lista de Juegos</a></li>
-                                {% if not user.is_authenticated %}                                 
-                                <li><a href="{% url 'iniciar_sesion' %}">Iniciar sesión</a></li>
-                                {% endif %}
-                                {% if not user.is_authenticated %}
-                                <li><a href="{% url 'registro' %}">Registro</a></li>
-                                {% endif %}
-                                <li><a href="{% url 'iniciar_sesion' %}">Sobre mi</a></li>  
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <div class="col-lg-2">
-                    <div class="header__right">
-                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        {% if user.is_authenticated %}
-                        <span class="icon_profile"></span>
-                        <span class="username">&nbsp;&nbsp;{{ user.username }}</span>
-                        <form method="post" action="{% url 'cerrar_sesion' %}">
-                            {% csrf_token %}
-                            <button type="submit" style="border: none; background: none; padding: 0; color: inherit; cursor: pointer;">Cerrar Sesión</button>
-                          </form>
-                        {% else %}
-                        <a href="{% url 'iniciar_sesion' %}"><span class="icon_profile"></span></a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-            <div id="mobile-menu-wrap"></div>
-        </div>
-    </header>
-    <!-- Header End -->
+    <!-- Header heredado -->
+    {% include 'header.html' %}
 
-    <!-- Hero Section Begin -->
+    <!-- Slides de juegos principales -->
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
@@ -126,9 +74,8 @@
             </div>
         </div>
     </section>
-    <!-- Hero Section End -->
 
-    <!-- Product Section Begin -->
+    <!-- Mejores de 2023 -->
     <section class="product spad">
         <div class="container">
             <div class="row">
@@ -264,19 +211,10 @@
     </section>
 <!-- Product Section End -->
 
-<!-- Footer Section Begin -->
+<!-- Footer heredado  -->
 {% include 'footer.html' %}
-  <!-- Search model Begin -->
-  <div class="search-model">
-    <div class="h-100 d-flex align-items-center justify-content-center">
-        <div class="search-close-switch"><i class="icon_close"></i></div>
-        <form class="search-model-form" method="get" action="{% url 'index' %}">
-            <input type="text" id="search-input" name="q" placeholder="Busca el juego por título...">
-        </form>
-        </div>
-    </div>
-<!-- Search model end -->
-
+  <!-- Buscador -->
+{% include 'buscador.html' %}
 
 <!-- Js Plugins -->
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
