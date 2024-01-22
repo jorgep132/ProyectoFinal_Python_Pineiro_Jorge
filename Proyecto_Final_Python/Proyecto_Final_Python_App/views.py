@@ -3,7 +3,6 @@ from django.views import View
 from django import forms
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
 from .forms import JuegosForm, UsuarioEstandarForm
-from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
@@ -96,9 +95,6 @@ def agregar_usuarios(request):
         if form.is_valid():
             # Obtén los datos del formulario sin guardarlos aún
             usuario = form.save(commit=False)
-            
-            # Hashea la contraseña antes de guardarla
-            usuario.password = make_password(form.cleaned_data['password'])
             
             if form.cleaned_data['is_superuser']:
                 usuario.is_staff = True
@@ -294,7 +290,7 @@ def registro_usuario(request):
         else:
             usuario_estandar = UsuarioEstandar.objects.create_user(username=username, email=email, password=password)
 
-        return redirect('login')
+        return redirect('iniciar_sesion')
 
     return render(request, 'registro.html')
 
