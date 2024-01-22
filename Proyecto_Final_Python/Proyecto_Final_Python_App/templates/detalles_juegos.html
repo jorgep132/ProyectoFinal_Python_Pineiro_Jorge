@@ -132,11 +132,6 @@
                                             <li><span>Metacritic:</span>{{juego.metacritic}}</li>
                                             <li><span>Duración:</span>{{juego.duracion}}</li>
                                             <li><span>Plataforma:</span>{{juego.plataforma}}</li>
-                                            <form method="post" action="{% url 'detalles_juego' juego_id=juego.id %}">
-                                                {% csrf_token %}
-                                                {{ form.as_p }}
-                                                <input type="submit" value="Enviar Valoración">
-                                            </form>
                                         </ul>
                                     </div>
                                 </div>
@@ -150,8 +145,39 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-8 col-md-8">
+                    <div class="anime__details__review">
+                        <div class="section-title">
+                            <h5>Comentarios</h5>
+                        </div>
+                        <!-- Sección de Comentarios -->
+                        <div>
+                            {% for comentario in comentarios %}
+                                <div class="anime__review__item">
+                                    <div class="anime__review__item__text">
+                                        <h6>{{ comentario.autor }} - <span>{{ comentario.fecha_creacion }}</span></h6>
+                                        <p>{{ comentario.contenido }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                
+                        <!-- Formulario de Comentario -->
+                        <div class="anime__details__form">
+                            <div class="section-title">
+                                <h5>Tu Comentario</h5>
+                            </div>
+                            <form method="post" action="{% url 'valorar_juego' juego_id=juego.id %}">
+                                {% csrf_token %}
+                                <textarea name="comentario" placeholder="Tu Comentario"></textarea>
+                                <button type="submit"><i class="fa fa-location-arrow"></i> Enviar Comentario</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
         </section>
         <!-- Anime Section End -->
+        
 
         <!-- Footer Section Begin -->
         <footer class="footer">

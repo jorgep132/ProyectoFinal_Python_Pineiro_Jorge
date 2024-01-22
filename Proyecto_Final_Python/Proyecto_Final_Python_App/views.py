@@ -2,7 +2,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
 from django import forms
 from django.urls import reverse
-from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
+from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar, Comentario
 from .forms import JuegosForm, UsuarioEstandarForm, ValorarJuegoForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
@@ -83,12 +83,18 @@ def valorar_juego(request, juego_id):
     if request.method == 'POST':
         form = ValorarJuegoForm(request.POST)
         if form.is_valid():
-            # Procesa el formulario y guarda la valoración
-            # Aquí deberías tener lógica para guardar la valoración en tu modelo
-            # Por ejemplo: juego.valoracion = form.cleaned_data['valoracion']
-            # Luego guarda el juego con juego.save()
+            comentario_texto = form.cleaned_data['comentario']
 
+            # Guardar la valoración en el juego
+            juego.save()
+
+            # Guardar el comentario asociado al juego
+            if comentario_texto:
+                Comentario.objects.create(juego=juego, autor=request.user.username, contenido=comentario_texto)
+
+            # Redirigir a la página de detalles del juego
             return HttpResponseRedirect(reverse('detalles_juego', args=[juego_id]))
+
     else:
         form = ValorarJuegoForm()
 
@@ -274,12 +280,20 @@ class VistaJuegosListaAlReves(View):
 def detalles_juego(request, juego_id):
     juego = get_object_or_404(Juegos, id=juego_id)
 
-    # Procesar el formulario de valoración si se envía
+    # Procesar el formulario de valoración y comentarios si se envía
     if request.method == 'POST':
         form = ValorarJuegoForm(request.POST)
         if form.is_valid():
-            # Lógica para procesar el formulario y guardar la valoración
-            # ...
+            valoracion = form.cleaned_data['valoracion']
+            comentario_texto = form.cleaned_data['comentario']
+
+            # Guardar la valoración en el juego
+            juego.valoracion = valoracion
+            juego.save()
+
+            # Guardar el comentario asociado al juego
+            if comentario_texto:
+                Comentario.objects.create(juego=juego, autor=request.user.username, contenido=comentario_texto)
 
             # Después de procesar el formulario, redirigir a la página de detalles del juego
             return HttpResponseRedirect(request.path_info)  # Esto redirige a la misma página
@@ -287,8 +301,10 @@ def detalles_juego(request, juego_id):
     else:
         form = ValorarJuegoForm()
 
-    return render(request, 'detalles_juegos.html', {'juego': juego, 'form': form})
+    # Obtener los comentarios asociados al juego
+    comentarios = Comentario.objects.filter(juego=juego)
 
+    return render(request, 'detalles_juegos.html', {'juego': juego, 'form': form, 'comentarios': comentarios})
 
 
 def registro_usuario(request):

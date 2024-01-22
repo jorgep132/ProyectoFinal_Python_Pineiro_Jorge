@@ -59,3 +59,12 @@ class UsuarioEstandar(AbstractUser):
     def __str__(self):
         return self.username
     
+    
+class Comentario(models.Model):
+    juego = models.ForeignKey('Juegos', on_delete=models.CASCADE)
+    autor = models.CharField(max_length=100)
+    contenido = models.TextField()
+    fecha_creacion = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Comentario de {self.autor} en {self.juego.title}'
