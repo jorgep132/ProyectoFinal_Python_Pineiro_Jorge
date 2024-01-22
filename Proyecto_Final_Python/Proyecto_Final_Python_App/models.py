@@ -21,7 +21,7 @@ class Juegos(models.Model):
     genero2 = models.CharField(max_length=32, default='')
     genero3 = models.CharField(max_length=32, default='')
     desarrolladora = models.CharField(max_length=32, default='')
-    lanzamiento = models.CharField(max_length=32, default='')
+    lanzamiento = models.DateField()
     metacritic = models.IntegerField(validators=[MaxValueValidator(100)], default=0)
     duracion = models.CharField(max_length=32, default='')
     plataforma = models.CharField(max_length=32, default='')
@@ -38,6 +38,21 @@ class Juegos(models.Model):
     
     def __str__(self):
         return self.title
+    
+class Proximamente(models.Model):
+    title = models.CharField(max_length=50, default='')
+    image = models.ImageField(upload_to='media/img/juegos')
+    lanzamiento = models.DateField()
+    url = models.URLField(default='')
+    
+    def __str__(self):
+        return self.title
+        
+    
+    
+    
+    
+    
 
 class UsuarioEstandarManager(BaseUserManager):
     def create_user(self, username, email, password=None, **extra_fields):

@@ -2,14 +2,15 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views import View
 from django import forms
 from django.urls import reverse
-from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar, Comentario
+from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar, Comentario, Proximamente
 from .forms import JuegosForm, UsuarioEstandarForm, AgregarComentarioForm, ActualizarComentarioForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
-from datetime import datetime
+from datetime import datetime, date
+
 
 
 def index(request):
@@ -18,6 +19,8 @@ def index(request):
 
     # Obtén todos los juegos con mayor Metacritic ordenados de mayor a menor
     juegos = Juegos.objects.all().order_by('-metacritic')
+    
+    proximos_lanzamientos = Proximamente.objects.all()
 
     if query:
         # Filtra los juegos por título antes de limitar a los 4 primeros
@@ -32,8 +35,12 @@ def index(request):
     # Limita la consulta a los 4 primeros juegos con mayor Metacritic
     juegos = juegos[:4]
 
-    context = {'juegos': juegos, 'query': query, 'fecha_actual': fecha_actual}
+    context = {'juegos': juegos, 'query': query, 'fecha_actual': fecha_actual, 'proximos_lanzamientos':proximos_lanzamientos}
     return render(request, 'index.html', context)
+
+
+
+
 
 ##### Crear juegos desde la pag #########
 
@@ -383,6 +390,5 @@ def login_usuario(request):
             return render(request, 'login.html', {'error': 'Usuario o contraseña incorrectos.'})
         
     return render(request, 'login.html')
-
 
 
