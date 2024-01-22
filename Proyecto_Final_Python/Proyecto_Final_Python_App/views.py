@@ -3,6 +3,7 @@ from django.views import View
 from django import forms
 from Proyecto_Final_Python_App.models import Juegos, UsuarioEstandar
 from .forms import JuegosForm, UsuarioEstandarForm
+from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
 from django.views.generic import ListView
@@ -93,10 +94,20 @@ def agregar_usuarios(request):
     if request.method == 'POST':
         form = UsuarioEstandarForm(request.POST, request.FILES)
         if form.is_valid():
-            # Guardar los datos si el formulario es válido
-            form.save()
+            # Obtén los datos del formulario sin guardarlos aún
+            usuario = form.save(commit=False)
+            
+            # Hashea la contraseña antes de guardarla
+            usuario.password = make_password(form.cleaned_data['password'])
+            
+            if form.cleaned_data['is_superuser']:
+                usuario.is_staff = True
+            
+            # Guarda el usuario
+            usuario.save()
+
             # Limpiar el formulario para campos vacíos
-            return redirect ('administrar_usuarios')
+            form = UsuarioEstandarForm()
     else:
         # Si no es una solicitud POST, crear un nuevo formulario en blanco
         form = UsuarioEstandarForm()

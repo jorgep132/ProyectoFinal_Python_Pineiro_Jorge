@@ -9,7 +9,6 @@ class UsuarioEstandarForm(forms.ModelForm):
             'password': forms.PasswordInput(),
         }
     
-    
 class JuegosForm(forms.ModelForm):
     class Meta:
         model = Juegos
