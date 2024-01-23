@@ -13,6 +13,9 @@ class JuegosForm(forms.ModelForm):
     class Meta:
         model = Juegos
         fields = '__all__'
+        widgets = {
+            'description': forms.Textarea(attrs={'cols': 80, 'rows': 10}),  # Ajusta cols y rows según tus preferencias
+        }
 
 class AgregarComentarioForm(forms.Form):
     comentario = forms.CharField(label='Comentario', widget=forms.Textarea(attrs={'rows': 4}), required=False)

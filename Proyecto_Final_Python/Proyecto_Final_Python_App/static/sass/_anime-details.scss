@@ -1,15 +1,15 @@
 /*---------------------
-  Anime Details
+  juego Details
 -----------------------*/
-.anime-details {
+.juego-details {
     padding-top: 60px;
 }
 
-.anime__details__content {
+.juego__details__content {
     margin-bottom: 65px;
 }
 
-.anime__details__text {
+.juego__details__text {
     position: relative;
 
     p {
@@ -19,7 +19,7 @@
     }
 }
 
-.anime__details__pic {
+.juego__details__pic {
     height: 440px;
     border-radius: 5px;
     position: relative;
@@ -49,7 +49,7 @@
     }
 }
 
-.anime__details__title {
+.juego__details__title {
     margin-bottom: 20px;
 
     h3 {
@@ -65,7 +65,7 @@
     }
 }
 
-.anime__details__rating {
+.juego__details__rating {
     text-align: center;
     position: absolute;
     right: 0;
@@ -87,7 +87,7 @@
     }
 }
 
-.anime__details__widget {
+.juego__details__widget {
     margin-bottom: 15px;
 
     ul {
@@ -120,7 +120,7 @@
     }
 }
 
-.anime__details__btn {
+.juego__details__btn {
 
     .follow-btn {
         font-size: 13px;
@@ -161,16 +161,16 @@
     }
 }
 
-.anime__details__review {
+.juego__details__review {
     margin-bottom: 55px;
 }
 
-.anime__review__item {
+.juego__review__item {
     overflow: hidden;
     margin-bottom: 15px;
 }
 
-.anime__review__item__pic {
+.juego__review__item__pic {
     float: left;
     margin-right: 20px;
     position: relative;
@@ -192,7 +192,7 @@
     }
 }
 
-.anime__review__item__text{
+.juego__review__item__text{
    overflow: hidden;
     background: #1d1e39;
     padding: 18px 30px 16px 20px;
@@ -216,7 +216,7 @@
     }
 }
 
-.anime__details__form {
+.juego__details__form {
 
     form {
 

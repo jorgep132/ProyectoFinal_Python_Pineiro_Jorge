@@ -3,8 +3,8 @@
 {% load static %}
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Anime Template">
-    <meta name="keywords" content="Anime, unica, creative, html">
+    <meta name="description" content="juego Template">
+    <meta name="keywords" content="juego, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ juego.title }}</title>
@@ -47,24 +47,24 @@
     </div>
     <!-- Breadcrumb End -->
 
-    <!-- Anime Section Begin -->
-    <section class="anime-details spad">
+    <!-- juego Section Begin -->
+    <section class="juego-details spad">
         <div class="container">
-            <div class="anime__details__content">
+            <div class="juego__details__content">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="{{juego.image.url}}">
+                        <div class="juego__details__pic set-bg" data-setbg="{{juego.image.url}}">
                             <div class="view"><i class="fa fa-comments"></i>&nbsp;&nbsp;{{ comentarios|length }}</div>
                         </div>
                     </div>
                     <div class="col-lg-9">
-                        <div class="anime__details__text">
-                            <div class="anime__details__title">
+                        <div class="juego__details__text">
+                            <div class="juego__details__title">
                                 <h3>{{ juego.title }}</h3>
                                 <span>{{ juego.subtitle }}</span>
                             </div>
                             <p>{{ juego.description }}</p>
-                            <div class="anime__details__widget">
+                            <div class="juego__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="anime__details__btn">
+                            <div class="juego__details__btn">
                                 <a href="{{juego.tienda}}" target="_blank" class="follow-btn">Lo quiero!</a>
                                 <a href="{{juego.trailer}}" target="_blank" class="watch-btn"><span>Ver trailer</span> <i
                                     class="fa fa-angle-right"></i></a>
@@ -92,15 +92,15 @@
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8">
-                    <div class="anime__details__review">
+                    <div class="juego__details__review">
                         <div class="section-title">
                             <h5>Comentarios</h5>
                         </div>
                         <!-- Sección de Comentarios -->
                         <div>
                             {% for comentario in comentarios %}
-                                <div class="anime__review__item">
-                                    <div class="anime__review__item__text">
+                                <div class="juego__review__item">
+                                    <div class="juego__review__item__text">
                                         <h6>{{ comentario.autor }} - <span>{{ comentario.fecha_creacion }}</span></h6>
                                         <p>{{ comentario.contenido }}</p>
                                         <a href="{% url 'actualizar_comentario' comentario.id %}">Modificar</a>
@@ -111,7 +111,7 @@
                         </div>
                 
                         <!-- Formulario de Comentario -->
-                        <div class="anime__details__form">
+                        <div class="juego__details__form">
                             <div class="section-title">
                                 <h5>Tu Comentario</h5>
                             </div>
@@ -129,7 +129,7 @@
                     </div>
                 </div>
         </section>
-        <!-- Anime Section End -->
+        <!-- juego Section End -->
         
 
         <!-- Footer Section Begin -->

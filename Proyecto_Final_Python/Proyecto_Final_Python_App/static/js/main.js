@@ -1,6 +1,6 @@
 /*  ---------------------------------------------------
-    Theme Name: Anime
-    Description: Anime video tamplate
+    Theme Name: juego
+    Description: juego video tamplate
     Author: Colorib
     Author URI: https://colorib.com/
     Version: 1.0
