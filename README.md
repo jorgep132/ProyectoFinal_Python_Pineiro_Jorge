@@ -22,24 +22,27 @@ Contenido general de la web:
     - Botón back to top
 
 ***
-Vistas, o páginas, a las que podemos navegar dentro de la web:
+Vistas, o páginas, a las que podemos navegar dentro de la web.
 ***
 
 **Inicio**:
-  - Descripción: Modelo del inicio, index o home, de la web. Es lo primero que se encuentra el usuario al ingresar a la página.
+  - Descripción: Vista del inicio, index o home, de la web. Es lo primero que se encuentra el usuario al ingresar a la página.
   - Contenido:
-    - Buscador
-    - Acceso a las diferentes páginas de la web mediante el header
-    - Acceso a las diferentes páginas de la web mediante el footer
-    - Próximos lanzamientos
-    - TOP 4 juegos con mayor metacritic
-    - Favicon
-    - 
-2.  **Cursos**:
-  - Descripción: Este modelo contiene un formulario de carga de datos de cursos:
+    - Slide con tres juegos (elegidos por mi) a modo de presentación.
+    - Sidebar con un TOP de los 4 juegos con mayor metacritic registrados en la web.
+    - Próximos lanzamientos, ordenados por fecha de salida.
+
+**Administrar lanzamientos**:
+  - Descripción: Vista con el listado de todos los lanzamientos con sus atributos, y acciones sobre estos.
   - Atributos:
-    - nombre_curso
-    - camada
+    - lanzamiento.title: Titulo del lanzamiento
+    - lanzamiento.fecha: Fecha de salida
+    - lanzamiento.trailer: Link con un trailer oficial.
+- Acciones:
+  - Editar: editar lanzamientos cargados
+  - Borrar: borrar lanzamientos cargados
+  - Agregar lanzamiento: agregar un nuevo lanzamiento
+  
 3. **Estudiantes**:
   - Descripción: Este modelo contiene un formulario de carga de datos de estudiantes:
   - Atributos:
