@@ -207,7 +207,7 @@ Disstintas tecnologías utilizadas:
 ## Instalación
 Sigue el paso a paso para poder instalar el proyecto:
 1. Clona el repositorio:
-   $ git clone [jorgep132/ProyectoFinal_Python_Pineiro_Jorge](https://github.com/jorgep132/ProyectoFinal_Python_Pineiro_Jorge])
+   $ git clone [jorgep132/ProyectoFinal_Python_Pineiro_Jorge](https://github.com/jorgep132/ProyectoFinal_Python_Pineiro_Jorge)
 2. Navega al directorio del proyecto:
   $ cd path/to/the/project
 3. Instala las dependencias:
