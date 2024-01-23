@@ -1,15 +1,13 @@
-<!-- agregar_juegos.html -->
-
-<html lang="en">
+<!-- Agregar usuarios -->
+<html lang="es">
 <head>
-    <!-- ... tus metaetiquetas ... -->
-    <title>Agregar Usuario</title>
+    <title>Agregar usuario</title>
 </head>
 <body>
 
-<h2>Agregar Usuario</h2>
+<h2>Agregar usuario</h2>
 
-<!-- Formulario para agregar juegos -->
+<!-- Formulario para agregar usuarios -->
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
@@ -18,7 +16,7 @@
 
 <hr>
 
-<!-- Tabla para mostrar la lista de juegos -->
+<!-- Tabla para mostrar la lista de usuarios -->
 <table border="1">
     <tbody>
         {% for usuario in usuarios %}

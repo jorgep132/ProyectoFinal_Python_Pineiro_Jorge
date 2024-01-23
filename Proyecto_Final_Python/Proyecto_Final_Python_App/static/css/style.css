@@ -9,6 +9,22 @@
 /* Template default CSS
 /*----------------------------------------*/
 
+
+
+
+#about {
+	
+	background-image: url(/static/img/banner.png);
+	height: 300px;
+	width: 300px;
+	border-radius: 50%;
+	display: flex; /* Corregir la propiedad display */
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto; /* Centrar horizontalmente */
+
+}
+
 html,
 body {
 	height: 100%;
@@ -57,6 +73,28 @@ p {
 	line-height: 25px;
 	margin: 0 0 15px 0;
 }
+
+#texto_about {
+
+	font-size: 15px;
+	font-family: "Mulish", sans-serif;
+	color: white;
+	text-align: justify; /* Justifica el texto */
+	font-weight: 400;
+	line-height: 25px;
+
+}
+
+#about_row {
+	
+	display: flex; /* Corregir la propiedad display */
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto; /* Centrar horizontalmente */
+	
+}
+
+
 
 img {
 	max-width: 100%;

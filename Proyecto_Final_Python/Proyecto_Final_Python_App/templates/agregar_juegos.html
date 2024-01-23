@@ -1,22 +1,17 @@
-<!-- agregar_juegos.html -->
-
-<html lang="en">
+<!-- Agregar juegos -->
+<html lang="es">
 <head>
-    <!-- ... tus metaetiquetas ... -->
-    <title>Agregar Juego</title>
+    <title>Agregar juego</title>
 </head>
 <body>
 
-<h2>Agregar Juego</h2>
-
+<h2>Agregar juego</h2>
 <!-- Formulario para agregar juegos -->
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Guardar</button>
 </form>
-
-<hr>
 
 <!-- Tabla para mostrar la lista de juegos -->
 <table border="1">

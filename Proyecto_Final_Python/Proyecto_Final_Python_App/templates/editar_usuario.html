@@ -1,15 +1,13 @@
-<!-- editar_usuario.html -->
-
-<html lang="en">
+<!-- Editar usuario -->
+<html lang="es">
 <head>
-    <!-- ... tus metaetiquetas ... -->
-    <title>Editar Usuario</title>
+    <title>Editar usuario</title>
 </head>
 <body>
 
-<h2>Editar Usuario</h2>
+<h2>Editar usuario</h2>
 
-<!-- Formulario para editar el juego -->
+<!-- Formulario para editar el usuario -->
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

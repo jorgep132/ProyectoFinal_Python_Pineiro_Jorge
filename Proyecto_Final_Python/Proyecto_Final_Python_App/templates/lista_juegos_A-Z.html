@@ -7,7 +7,7 @@
     <meta name="keywords" content="juego, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Listado de Juegos</title>
+    <title>Lista de juegos</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,18 +27,17 @@
 </head>
 
 <body>
-    <!-- Header Section Begin -->
+    <!-- Header -->
     {% include 'header.html' %}
-    <!-- Header End -->
 
-    <!-- Breadcrumb Begin -->
+    <!-- Breadcrumb -->
     <div class="breadcrumb-option">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <a href="{% url 'index' %}"><i class="fa fa-home"></i> Inicio</a>
-                        <a href="{% url 'lista_juegos_A-Z' %}">Lista de Juegos</a>
+                        <a href="{% url 'lista_juegos_A-Z' %}">Lista de juegos</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +45,7 @@
     </div>
     <!-- Breadcrumb End -->
 
-    <!-- Product Section Begin -->
+    <!-- Secci[ón con los juegos y sus atributos -->
     <section class="product-page spad">
         <div class="container">
             <div class="row">
@@ -138,15 +137,12 @@
             </div>
         </div>
     </section>
-<!-- Product Section End -->
+    <!-- Fin de la sección de juegos -->
 
-<!-- Footer Section Begin -->
+<!-- Footer -->
 {% include 'footer.html' %}
-  <!-- Footer Section End -->
-
-  <!-- Search model Begin -->
+<!-- Buscador -->
 {% include 'buscador.html'%}
-<!-- Search model end -->
 
 <!-- Js Plugins -->
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
@@ -157,6 +153,8 @@
 <script src="{% static 'js/jquery.slicknav.js' %}"></script>
 <script src="{% static 'js/owl.carousel.min.js' %}"></script>
 <script src="{% static 'js/main.js' %}"></script>
+
+<!-- Script para poder cambiar el orden en el que se muestran los juegos-->
 <script>
     $(document).ready(function() {
         $('#elegirOrden').on('change', function() {
@@ -174,6 +172,7 @@
         });
     });
 </script>
+<!-- Fin del script -->
 
 </body>
 

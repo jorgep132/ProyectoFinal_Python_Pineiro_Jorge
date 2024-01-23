@@ -1,13 +1,13 @@
-<html lang="en">
+<!-- Agregar lanzamientos -->
+<html lang="es">
 <head>
-    <!-- ... tus metaetiquetas ... -->
     <title>Agregar lanzamiento</title>
 </head>
 <body>
 
 <h2>Agregar lanzamiento</h2>
 
-<!-- Formulario para agregar juegos -->
+<!-- Formulario para agregar lanzamiento -->
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
@@ -16,16 +16,8 @@
 
 <hr>
 
-<!-- Tabla para mostrar la lista de juegos -->
+<!-- Tabla para mostrar la lista de lanzamientos -->
 <table border="1">
-    <thead>
-        <tr>
-            <th>Título</th>
-            <th>Fecha de lanzamiento</th>
-            <th>Trailer</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
     <tbody>
         {% for lanzamiento in lanzamientos %}
         <tr>

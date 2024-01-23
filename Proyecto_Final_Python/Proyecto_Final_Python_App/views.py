@@ -8,8 +8,6 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login
-from django.views.generic import ListView
-from datetime import datetime, date
 
 
 def index(request):
@@ -17,8 +15,6 @@ def index(request):
     Vista del inicio (index) de la web.
         
     '''
-    fecha_actual = datetime.now() # Mostramos la fecha actual en el footer de la web.
-    
     query = request.GET.get('q') # Definimos query para el buscador de la web.
     
     # Otenemos todos los juegos, y los ordenamos por metacritic, de mas alto a mas bajo, luego se mostrara del lado derecho de la web.
@@ -41,7 +37,7 @@ def index(request):
     # Limita la consulta a los 4 primeros juegos con mayor Metacritic.
     juegos = juegos[:4]
 
-    context = {'juegos': juegos, 'query': query, 'fecha_actual': fecha_actual, 'lanzamientos':lanzamientos}
+    context = {'juegos': juegos, 'query': query, 'lanzamientos':lanzamientos}
     return render(request, 'index.html', context)
 
 
@@ -335,7 +331,19 @@ def registro_usuario(request):
             usuario_estandar = UsuarioEstandar.objects.create_superuser(username=username, email=email, password=password)
         else:
             usuario_estandar = UsuarioEstandar.objects.create_user(username=username, email=email, password=password)
+            
+        # Buscador #
+        query = request.GET.get('q')
 
+        if query:
+            juegos = Juegos.objects.filter(title__icontains=query).order_by('-metacritic')
+
+            if juegos.count() == 1:
+                juego = juegos.first()
+                return redirect('detalles_juego', juego_id=juego.id)
+            else :
+                return redirect('registro')
+        
         return redirect('iniciar_sesion')
 
     return render(request, 'registro.html')
@@ -357,12 +365,24 @@ def login_usuario(request):
     '''
     Vista para iniciar sesion (login)
     '''
+    # Buscador #
+    query = request.GET.get('q')
+    
+    if query:
+        juegos = Juegos.objects.filter(title__icontains=query)
+        
+        if juegos.count() == 1:
+            juego = juegos.first()
+            return redirect('detalles_juego', juego_id=juego.id)
+        else:
+            return redirect('iniciar_sesion')
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
-    
+          
         user = authenticate(request, username=username, password=password)
-    
+        
         if user is not None and user.is_active:
             login(request, user)
             return redirect('index')
@@ -474,7 +494,22 @@ class EliminarComentarioView(View):
         return redirect('detalles_juego', juego_id=juego_id)
 # Fin del bloque de comentarios #
 
-
-
+def about(request):
+    '''
+    Vista sobre mi
+    '''
+    # Buscador #
+    query = request.GET.get('q')
+    
+    if query:
+        juegos = Juegos.objects.filter(title__icontains=query)
+        
+        if juegos.count() == 1:
+            juego = juegos.first()
+            return redirect('detalles_juego', juego_id=juego.id)
+        else:
+            return redirect('about')
+    
+    return render(request, 'about.html')
 
 

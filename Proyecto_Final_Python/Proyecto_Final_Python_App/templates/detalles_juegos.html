@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="es">
 {% load static %}
 <head>
     <meta charset="UTF-8">
@@ -23,15 +23,16 @@
     <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="icon" href="{% static 'img/test_favicon.png' %}" type="image/png">
+
 </head>
 
 <body>
 
-    <!-- Header Section Begin -->
+    <!-- Header heredado-->
     {% include 'header.html' %}
-    <!-- Header End -->
 
-    <!-- Breadcrumb Begin -->
+    <!-- Breadcrumb -->
     <div class="breadcrumb-option">
         <div class="container">
             <div class="row">
@@ -45,9 +46,9 @@
             </div>
         </div>
     </div>
-    <!-- Breadcrumb End -->
+    <!-- Breadcrumb fin -->
 
-    <!-- juego Section Begin -->
+    <!-- Seccion donde se mostrarán los juegos -->
     <section class="juego-details spad">
         <div class="container">
             <div class="juego__details__content">
@@ -91,12 +92,12 @@
                         </div>
                     </div>
                 </div>
+                <!-- Sección para los comentarios que tendrá cada juego -->
                 <div class="col-lg-8 col-md-8">
                     <div class="juego__details__review">
                         <div class="section-title">
                             <h5>Comentarios</h5>
                         </div>
-                        <!-- Sección de Comentarios -->
                         <div>
                             {% for comentario in comentarios %}
                                 <div class="juego__review__item">
@@ -109,7 +110,6 @@
                                 </div>
                             {% endfor %}
                         </div>
-                
                         <!-- Formulario de Comentario -->
                         <div class="juego__details__form">
                             <div class="section-title">
@@ -128,63 +128,26 @@
                         </div>
                     </div>
                 </div>
-        </section>
-        <!-- juego Section End -->
+                <!-- Fin de la sección comentarios  -->
+            </div>
+    </section>
+    <!-- Fin de la sección de juegos -->
         
+    <!-- Footer  -->
+    {% include 'footer.html' %}
+    <!-- Buscador -->
+    {% include 'buscador.html' %}
 
-        <!-- Footer Section Begin -->
-        <footer class="footer">
-            <div class="page-up">
-                <a href="#" id="scrollToTopButton"><span class="arrow_carrot-up"></span></a>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="footer__logo">
-                            <a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="footer__nav">
-                            <ul>
-                                <li class="active"><a href="{% url 'index' %}">Inicio</a></li>
-                                <li><a href="{% url 'lista_juegos_A-Z' %}">Lista de juegos</a></li>
-                                <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 
-                      </div>
-                  </div>
-              </div>
-          </footer>
-          <!-- Footer Section End -->
-
-          <!-- Search model Begin -->
-          <div class="search-model">
-            <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="search-close-switch"><i class="icon_close"></i></div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here.....">
-                </form>
-            </div>
-        </div>
-        <!-- Search model end -->
-
-        <!-- Js Plugins -->
-        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'js/player.js' %}"></script>
-        <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
-        <script src="{% static 'js/mixitup.min.js' %}"></script>
-        <script src="{% static 'js/jquery.slicknav.js' %}"></script>
-        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
-        <script src="{% static 'js/main.js' %}"></script>
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/player.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/mixitup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
 
     </body>
 

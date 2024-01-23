@@ -3,7 +3,13 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth.views import LogoutView
-from Proyecto_Final_Python_App.views import index, administrar_lanzamientos, editar_lanzamiento, agregar_lanzamientos, borrar_lanzamiento, detalles_juego, registro_usuario, login_usuario, administrar_usuarios, agregar_usuarios, editar_usuario, borrar_usuario, agregar_juegos,editar_juego, borrar_juego, administrar_juegos, ActualizarComentarioView, EliminarComentarioView, VistaJuegosLista, VistaJuegosListaAlReves
+from Proyecto_Final_Python_App.views import (
+    index, about, 
+    detalles_juego, agregar_juegos,editar_juego, borrar_juego, administrar_juegos,
+    administrar_lanzamientos, editar_lanzamiento, agregar_lanzamientos, borrar_lanzamiento, 
+    registro_usuario, login_usuario, administrar_usuarios, agregar_usuarios, editar_usuario, borrar_usuario,
+    ActualizarComentarioView, EliminarComentarioView, VistaJuegosLista, VistaJuegosListaAlReves )
+
 
 
 
@@ -30,6 +36,7 @@ urlpatterns = [
     path('administrar_lanzamientos/agregar_lanzamientos/', agregar_lanzamientos, name='agregar_lanzamientos'),
     path('administrar_lanzamientos/editar_lanzamiento/<str:lanzamiento_title>/', editar_lanzamiento, name='editar_lanzamiento'),
     path('administrar_lanzamientos/borrar_lanzamiento/<str:lanzamiento_title>/', borrar_lanzamiento, name='borrar_lanzamiento'),
+    path('about/', about, name='about')
     
 ]
  
